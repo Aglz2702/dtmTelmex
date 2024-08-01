@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Nuevos_de_hoy</fullName>
+    <columns>NAME</columns>
+    <columns>dtmCotizacion__c</columns>
+    <columns>CREATEDBY_USER</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>OBJECT_ID</columns>
+    <columns>vlocity_cmt__ObjectName__c</columns>
+    <columns>vlocity_cmt__SourceType__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>Nuevos de hoy</label>
+</ListView>

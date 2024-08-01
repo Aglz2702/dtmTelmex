@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>dtmPais__c</fullName>
+    <description>DTT-240321-MVP1-TEL14
+Campo para los valores de país</description>
+    <externalId>false</externalId>
+    <label>País</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>dtmPais</valueSetName>
+    </valueSet>
+</CustomField>

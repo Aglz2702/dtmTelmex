@@ -1,0 +1,19 @@
+.custom-btn{
+    width:fit-content;
+    width: -moz-fit-content; /* Support Mozilla Firefox Browser */
+}
+
+.custom-btn .slds-button{
+    border-radius: 0px;
+}
+
+.incomplete-btn {
+    border: 1px solid #ddd;
+    height: 32px;
+    width: fit-content;
+    width: -moz-fit-content; /* Support Mozilla Firefox Browser */
+    background: #C9C7C5;
+    color: #525252;
+    border-radius: 0.25rem;
+    margin-right: 0px;
+}

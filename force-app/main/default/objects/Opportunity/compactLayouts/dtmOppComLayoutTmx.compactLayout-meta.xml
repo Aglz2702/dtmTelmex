@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>dtmOppComLayoutTmx</fullName>
+    <fields>Name</fields>
+    <fields>dtmOportunidadTotal__c</fields>
+    <fields>dtmIdentificadorOpp__c</fields>
+    <fields>AccountId</fields>
+    <fields>dtmFechaDeVigencia__c</fields>
+    <label>Opp Telmex</label>
+</CompactLayout>

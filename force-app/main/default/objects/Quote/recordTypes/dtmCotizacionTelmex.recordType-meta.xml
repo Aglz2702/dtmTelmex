@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>dtmCotizacionTelmex</fullName>
+    <active>true</active>
+    <compactLayoutAssignment>dtmCotizacionHeader</compactLayoutAssignment>
+    <description>DTT-240320-MVP1-Tipo de registro especial para las cotizaciones del proyecto VARS</description>
+    <label>Cotización Telmex</label>
+    <picklistValues>
+        <picklist>Status</picklist>
+        <values>
+            <fullName>Contratación</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Entregado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ganada</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Negociación</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Nuevo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Perdida</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Revisión Técnica</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Validación</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

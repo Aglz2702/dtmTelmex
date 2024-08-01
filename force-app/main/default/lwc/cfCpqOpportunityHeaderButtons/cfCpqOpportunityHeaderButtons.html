@@ -1,0 +1,61 @@
+<template>
+            <div class="slds-grid slds-wrap slds-is-relative ">
+            <div style="position: fixed;z-index: 999999;top: 0;right: 0;">
+  <vlocity_cmt-toast class="flexcard-toast-element" theme="slds" title="" message="" styletype=""> </vlocity_cmt-toast>
+</div>
+            <div if:true={showLoader} class="slds-is-absolute vloc-loader_override" style="height: 100%; width: 100%; min-height:50px; background: transparent; z-index: 99;">
+  <div>
+   <vlocity_cmt-spinner
+      variant="brand"
+      alternative-text="Loading content..."
+      size="medium"
+      theme="slds"
+      ></vlocity_cmt-spinner>
+  </div>
+</div>
+            <template if:false={hasPermission}>
+              You don't have required permissions to view this card.
+            </template>
+            <template if:true={hasPermission}>
+              <template if:true={hasRecords}>
+                        <template for:each={_records} for:item="record" for:index="rindex">
+                            <vlocity_cmt-flex-card-state if:true={record}  key={record._flex.uniqueKey} data-recordid={record.Id} record={record} data-statue="true"  data-index="0" data-rindex={rindex} class="cf-vlocity-state-0 cf-vlocity-state slds-size_12-of-12 "  tracking-obj={_childCardTrackingObj} >
+      <div if:true={cardLoaded} class="slds-grid slds-wrap slds-card slds-m-right_x-small " style="      
+         ">
+          <div data-style-id="state0element0" class="slds-col   slds-size_12-of-12  condition-element" data-rindex={rindex} style=""  data-conditions='\{"group":[{"field":"details.records[0].actions.checkout","hasMergeField":false,"id":"state-new-condition-0","operator":"!=","type":"custom","value":"undefined"},{"field":"Session.buttonEnable","hasMergeField":false,"id":"state-new-condition-7","logicalOperator":"&&","operator":"==","type":"custom","value":"true"},{"group":[{"field":"Parent.isAsyncProcessCompleted","hasMergeField":false,"id":"state-new-condition-17","operator":"==","type":"custom","value":"true"},{"field":"Parent.isAsyncProcessesPresent","hasMergeField":false,"id":"state-new-condition-105","logicalOperator":"||","operator":"==","type":"custom","value":"0"}],"id":"state-new-group-18","logicalOperator":"&&"},{"field":"isCartHasError","hasMergeField":false,"id":"state-new-condition-341","logicalOperator":"&&","operator":"==","type":"custom","value":"false"}],"id":"state-condition-object","isParent":true}' ><vlocity_cmt-flex-action data-style-id="state0element0_child"  tracking-obj={_childCardTrackingObj}  class= "state0element0_child flexActionElement" 
+        data-action-element-class="state0element0_child" data-action-key="state0element0" onexecuteaction={performAction} data-show-spinner="false"
+        data-element-label="action0"   state-obj={record}  record={record}  card={card}  action-list='\[{"actionIndex":0,"contextId":"","draggable":false,"isOpen":true,"key":"1643711077093-q6iws7upa","label":"Action","stateAction":{"Web Page":{"targetName":"/lightning/cmp/vlocity_cmt__vlocityLWCOmniWrapper?c__target=c:cPQCreateQuoteMultiLanguage&c__layout=lightning&c__tabIcon=custom:custom18&c__cartId={recordId}&c__tabLabel=Create Quote"},"hasExtraParams":true,"id":"flex-action-1645015999153","openUrlIn":"Current Window","targetType":"Web Page","type":"Custom"}}]'  button-variant="brand"  data-conditions='\{"group":[{"field":"details.records[0].actions.checkout","hasMergeField":false,"id":"state-new-condition-0","operator":"!=","type":"custom","value":"undefined"},{"field":"Session.buttonEnable","hasMergeField":false,"id":"state-new-condition-7","logicalOperator":"&&","operator":"==","type":"custom","value":"true"},{"group":[{"field":"Parent.isAsyncProcessCompleted","hasMergeField":false,"id":"state-new-condition-17","operator":"==","type":"custom","value":"true"},{"field":"Parent.isAsyncProcessesPresent","hasMergeField":false,"id":"state-new-condition-105","logicalOperator":"||","operator":"==","type":"custom","value":"0"}],"id":"state-new-group-18","logicalOperator":"&&"},{"field":"isCartHasError","hasMergeField":false,"id":"state-new-condition-341","logicalOperator":"&&","operator":"==","type":"custom","value":"false"}],"id":"state-condition-object","isParent":true}'  display-as-button="true"  flyout-details='\{}'  hide-action-icon="true"  icon-name="standard-default"  label="\{Label.CreateQuotes}"  styles='\{"label":{"textAlign":"right"}}'  theme="slds"  ></vlocity_cmt-flex-action>
+      </div><div data-style-id="state0element1" class="slds-col  cpq__global-header_order__submit-order incomplete-btn slds-p-right_medium slds-p-left_medium slds-p-vertical_xx-small  slds-size_12-of-12  condition-element" data-rindex={rindex} style="      
+         "  data-conditions='\{"group":[{"field":"details.records[0].actions.checkout","hasMergeField":false,"id":"state-new-condition-2","operator":"==","type":"custom","value":"undefined"},{"field":"Session.buttonEnable","hasMergeField":false,"id":"state-new-condition-17","logicalOperator":"||","operator":"==","type":"custom","value":"false"},{"field":"isCartHasError","hasMergeField":false,"id":"state-new-condition-324","logicalOperator":"||","operator":"==","type":"custom","value":"true"}],"id":"state-condition-object","isParent":true}' ><vlocity_cmt-output-field data-style-id="state0element1_child"   record={record}  card={card}  data-conditions='\{"group":[{"field":"details.records[0].actions.checkout","hasMergeField":false,"id":"state-new-condition-2","operator":"==","type":"custom","value":"undefined"},{"field":"Session.buttonEnable","hasMergeField":false,"id":"state-new-condition-17","logicalOperator":"||","operator":"==","type":"custom","value":"false"},{"field":"isCartHasError","hasMergeField":false,"id":"state-new-condition-324","logicalOperator":"||","operator":"==","type":"custom","value":"true"}],"id":"state-condition-object","isParent":true}'  merge-field="%3Cdiv%3E%7BLabel.CreateQuotes%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div>
+      </vlocity_cmt-flex-card-state>
+                        </template>
+                      </template>
+                      <template if:false={hasRecords}>
+                            <vlocity_cmt-flex-card-state  record={record} data-statue="false"  data-index="0" data-rindex={rindex} class="cf-vlocity-state-0 cf-vlocity-state slds-size_12-of-12 "  tracking-obj={_childCardTrackingObj} >
+      <div if:true={cardLoaded} class="slds-grid slds-wrap slds-card slds-m-right_x-small " style="      
+         ">
+          <div data-style-id="state0element0" class="slds-col   slds-size_12-of-12  condition-element" data-rindex={rindex} style=""  data-conditions='\{"group":[{"field":"details.records[0].actions.checkout","hasMergeField":false,"id":"state-new-condition-0","operator":"!=","type":"custom","value":"undefined"},{"field":"Session.buttonEnable","hasMergeField":false,"id":"state-new-condition-7","logicalOperator":"&&","operator":"==","type":"custom","value":"true"},{"group":[{"field":"Parent.isAsyncProcessCompleted","hasMergeField":false,"id":"state-new-condition-17","operator":"==","type":"custom","value":"true"},{"field":"Parent.isAsyncProcessesPresent","hasMergeField":false,"id":"state-new-condition-105","logicalOperator":"||","operator":"==","type":"custom","value":"0"}],"id":"state-new-group-18","logicalOperator":"&&"},{"field":"isCartHasError","hasMergeField":false,"id":"state-new-condition-341","logicalOperator":"&&","operator":"==","type":"custom","value":"false"}],"id":"state-condition-object","isParent":true}' ><vlocity_cmt-flex-action data-style-id="state0element0_child"  tracking-obj={_childCardTrackingObj}  class= "state0element0_child flexActionElement" 
+        data-action-element-class="state0element0_child" data-action-key="state0element0" onexecuteaction={performAction} data-show-spinner="false"
+        data-element-label="action0"   state-obj={record}  record={record}  card={card}  action-list='\[{"actionIndex":0,"contextId":"","draggable":false,"isOpen":true,"key":"1643711077093-q6iws7upa","label":"Action","stateAction":{"Web Page":{"targetName":"/lightning/cmp/vlocity_cmt__vlocityLWCOmniWrapper?c__target=c:cPQCreateQuoteMultiLanguage&c__layout=lightning&c__tabIcon=custom:custom18&c__cartId={recordId}&c__tabLabel=Create Quote"},"hasExtraParams":true,"id":"flex-action-1645015999153","openUrlIn":"Current Window","targetType":"Web Page","type":"Custom"}}]'  button-variant="brand"  data-conditions='\{"group":[{"field":"details.records[0].actions.checkout","hasMergeField":false,"id":"state-new-condition-0","operator":"!=","type":"custom","value":"undefined"},{"field":"Session.buttonEnable","hasMergeField":false,"id":"state-new-condition-7","logicalOperator":"&&","operator":"==","type":"custom","value":"true"},{"group":[{"field":"Parent.isAsyncProcessCompleted","hasMergeField":false,"id":"state-new-condition-17","operator":"==","type":"custom","value":"true"},{"field":"Parent.isAsyncProcessesPresent","hasMergeField":false,"id":"state-new-condition-105","logicalOperator":"||","operator":"==","type":"custom","value":"0"}],"id":"state-new-group-18","logicalOperator":"&&"},{"field":"isCartHasError","hasMergeField":false,"id":"state-new-condition-341","logicalOperator":"&&","operator":"==","type":"custom","value":"false"}],"id":"state-condition-object","isParent":true}'  display-as-button="true"  flyout-details='\{}'  hide-action-icon="true"  icon-name="standard-default"  label="\{Label.CreateQuotes}"  styles='\{"label":{"textAlign":"right"}}'  theme="slds"  ></vlocity_cmt-flex-action>
+      </div><div data-style-id="state0element1" class="slds-col  cpq__global-header_order__submit-order incomplete-btn slds-p-right_medium slds-p-left_medium slds-p-vertical_xx-small  slds-size_12-of-12  condition-element" data-rindex={rindex} style="      
+         "  data-conditions='\{"group":[{"field":"details.records[0].actions.checkout","hasMergeField":false,"id":"state-new-condition-2","operator":"==","type":"custom","value":"undefined"},{"field":"Session.buttonEnable","hasMergeField":false,"id":"state-new-condition-17","logicalOperator":"||","operator":"==","type":"custom","value":"false"},{"field":"isCartHasError","hasMergeField":false,"id":"state-new-condition-324","logicalOperator":"||","operator":"==","type":"custom","value":"true"}],"id":"state-condition-object","isParent":true}' ><vlocity_cmt-output-field data-style-id="state0element1_child"   record={record}  card={card}  data-conditions='\{"group":[{"field":"details.records[0].actions.checkout","hasMergeField":false,"id":"state-new-condition-2","operator":"==","type":"custom","value":"undefined"},{"field":"Session.buttonEnable","hasMergeField":false,"id":"state-new-condition-17","logicalOperator":"||","operator":"==","type":"custom","value":"false"},{"field":"isCartHasError","hasMergeField":false,"id":"state-new-condition-324","logicalOperator":"||","operator":"==","type":"custom","value":"true"}],"id":"state-condition-object","isParent":true}'  merge-field="%3Cdiv%3E%7BLabel.CreateQuotes%7D%3C/div%3E"  theme="slds"  ></vlocity_cmt-output-field>
+      </div>
+        </div>
+      </vlocity_cmt-flex-card-state>
+                      </template>
+            </template>
+            <template if:true={hasError}>
+            {error}
+            </template>
+            
+      <vlocity_cmt-action action-wrapperclass="slds-hide" re-render-flyout class="action-trigger slds-col" onupdateos={updateOmniscript} onselectcards={updateSelectedCards} onsetvalue={updateAction} onfireactionevent={actionEvtHandler}>
+      
+      </vlocity_cmt-action>
+  
+            <vlocity_cmt-action class="execute-action" re-render-flyout action-wrapperclass="slds-hide" onupdateos={updateOmniscript} onselectcards={updateSelectedCards} onsetvalue={updateAction} onfireactionevent={actionEvtHandler}>
+            
+            </vlocity_cmt-action>
+            </div>
+          </template>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>dtmBloqueEstatusQuote</fullName>
+    <active>true</active>
+    <description>Una vez cerrada la cotización, no se puede regresar a las etapas anteriores</description>
+    <errorConditionFormula>IF( AND( ISPICKVAL(PRIORVALUE( Status ), &quot;Negociación&quot;), ISCHANGED( Status ) , OR( ISPICKVAL(Status, &quot;Validación&quot;),ISPICKVAL(Status, &quot;Revisión Técnica&quot;),ISPICKVAL(Status, &quot;Contratación&quot;),ISPICKVAL(Status, &quot;Entregado&quot;),ISPICKVAL(Status, &quot;Nuevo&quot;)),AND( $Profile.Name &lt;&gt; &quot;Administrador del sistema&quot;,$Profile.Name &lt;&gt; &quot;Partner Account Manager&quot;)), true, false)</errorConditionFormula>
+    <errorMessage>Lo sentimos, no se tiene permitido modificar la cotización en las etapas de “Validación y/o Negociación&quot;</errorMessage>
+</ValidationRule>

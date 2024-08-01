@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>dtmPassGis</fullName>
+        <language>es_MX</language>
+        <protected>false</protected>
+        <shortDescription>Password GIS</shortDescription>
+        <value>sfparnertest</value>
+    </labels>
+    <labels>
+        <fullName>dtmPassOdin</fullName>
+        <language>es_MX</language>
+        <protected>false</protected>
+        <shortDescription>Password ODIN</shortDescription>
+        <value>passwd1912++</value>
+    </labels>
+    <labels>
+        <fullName>dtmUserGis</fullName>
+        <language>es_MX</language>
+        <protected>false</protected>
+        <shortDescription>usuario GIS</shortDescription>
+        <value>sfparnertest</value>
+    </labels>
+    <labels>
+        <fullName>dtmUserOdin</fullName>
+        <language>es_MX</language>
+        <protected>false</protected>
+        <shortDescription>usuario ODIN</shortDescription>
+        <value>usuarioPartner</value>
+    </labels>
+</CustomLabels>

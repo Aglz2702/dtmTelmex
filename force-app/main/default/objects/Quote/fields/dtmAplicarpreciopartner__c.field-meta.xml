@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>dtmAplicarpreciopartner__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>DTT-240527-Campo que hace el cambio de precio Base a precio Partner</description>
+    <inlineHelpText>“El descuento que se aplicará será el de nivel” Oro, Platino, Plata (según corresponda en nivel del Partner)</inlineHelpText>
+    <label>Aplicar precio partner</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

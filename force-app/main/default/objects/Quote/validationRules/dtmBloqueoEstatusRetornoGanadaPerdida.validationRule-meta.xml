@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>dtmBloqueoEstatusRetornoGanadaPerdida</fullName>
+    <active>true</active>
+    <description>Detecta si se requiere cambiar de estatus hacia Negociación, una vez cerrada como ganada o perdida.</description>
+    <errorConditionFormula>IF( 
+AND( 
+OR( ISPICKVAL( PRIORVALUE(Status), &quot;Ganada&quot;),ISPICKVAL(PRIORVALUE(Status), &quot;Perdida&quot;),ISPICKVAL(PRIORVALUE(Status), &quot;Revisión Técnica&quot;) ), ISCHANGED( Status ), 
+OR( ISPICKVAL(Status, &quot;Validación&quot;),ISPICKVAL(Status, &quot;Nuevo&quot;), ISPICKVAL( Status, &quot;Negociación&quot;)), AND(  $Profile.Name &lt;&gt; &quot;Administrador del sistema&quot;,$Profile.Name &lt;&gt; &quot;Partner Account Manager&quot;)), true, false)</errorConditionFormula>
+    <errorMessage>Lo sentimos, no se tiene permitido modificar la etapa de la cotización que se encuentre en etapa de &quot;Ganada o Perdida&quot;</errorMessage>
+</ValidationRule>

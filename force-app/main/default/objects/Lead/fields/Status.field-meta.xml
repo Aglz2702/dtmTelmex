@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status</fullName>
+    <inlineHelpText>Nuevo: No se ha dado seguimiento, solo se ingresan algunos datos.
+Calificado: Es la calificación que se da, para ver si un prospecto es viable o no para generar negocio.
+Convertido: Es cuando el prospecto ya se ha convertido a Cuenta.</inlineHelpText>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <type>Picklist</type>
+</CustomField>

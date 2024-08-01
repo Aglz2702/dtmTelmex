@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>dtmBloqueoPartidasCotizacion</fullName>
+    <active>true</active>
+    <description>DTT-240411-MVP1-TEL-818 Regla que bloquea las partidas de cotización cuando la cotización se encuentra en la etapa de Contratación y / o Entregado</description>
+    <errorConditionFormula>AND($Profile.Name &lt;&gt; &quot;Administrador del sistema&quot;,
+  OR( ISPICKVAL( Quote.Status , &quot;Contratación&quot;),
+      ISPICKVAL( Quote.Status , &quot;Entregado&quot;)))</errorConditionFormula>
+    <errorMessage>Lo sentimos, no se tiene permitido modificar las partidas de cotización cuando la cotización se encuentra en etapa de “Contratación y/o Entrega</errorMessage>
+</ValidationRule>

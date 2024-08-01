@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>dtmSectorDENUE__c</fullName>
+    <description>DTT-240313-MVP1-Es la clasificación en la que se dividen las actividades económicas de las empresas públicas y privadas del país. Y sirve como agrupador de los subsectores DENUE.</description>
+    <label>Sector DENUE</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>dtmGiro__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetName>dtmSectorDENUE</valueSetName>
+        <valueSettings>
+            <controllingFieldValue>Fondos y fideicomisos financieros</controllingFieldValue>
+            <controllingFieldValue>Asesoría en inversiones</controllingFieldValue>
+            <controllingFieldValue>Banca múltiple</controllingFieldValue>
+            <controllingFieldValue>Administración de fondos para el retiro</controllingFieldValue>
+            <controllingFieldValue>Agentes, ajustadores y gestores de seguros y fianzas</controllingFieldValue>
+            <controllingFieldValue>Cajas de ahorro popular</controllingFieldValue>
+            <controllingFieldValue>Casas de bolsa</controllingFieldValue>
+            <controllingFieldValue>Casas de cambio</controllingFieldValue>
+            <controllingFieldValue>Casas de empeño</controllingFieldValue>
+            <controllingFieldValue>Servicios relacionados con la intermediación crediticia no bursátil</controllingFieldValue>
+            <controllingFieldValue>Sociedades de inversión especializadas en fondos para el retiro</controllingFieldValue>
+            <controllingFieldValue>Compañías de seguros</controllingFieldValue>
+            <controllingFieldValue>Otras instituciones de intermediación crediticia y financiera no bursátil</controllingFieldValue>
+            <valueName>Finanzas y seguros</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Generación, transmisión y distribución de energía eléctrica, suministro de agua y de gas por ductos al consumidor final</controllingFieldValue>
+            <controllingFieldValue>Comercialización de energía eléctrica</controllingFieldValue>
+            <valueName>Energia, gas y agua</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Otros servicios de almacenamiento con instalaciones especializadas</controllingFieldValue>
+            <controllingFieldValue>Otros servicios relacionados con el transporte aéreo</controllingFieldValue>
+            <controllingFieldValue>Autotransporte local de productos agrícolas sin refrigeración</controllingFieldValue>
+            <controllingFieldValue>Administración de aeropuertos y helipuertos</controllingFieldValue>
+            <controllingFieldValue>Servicios de administración de carreteras, puentes y servicios auxiliares</controllingFieldValue>
+            <controllingFieldValue>Servicios de agencias aduanales</controllingFieldValue>
+            <controllingFieldValue>Agencias de viajes</controllingFieldValue>
+            <controllingFieldValue>Almacenes generales de depósito</controllingFieldValue>
+            <controllingFieldValue>Servicios de mensajería y paquetería foránea</controllingFieldValue>
+            <controllingFieldValue>Servicios para la navegación por agua</controllingFieldValue>
+            <controllingFieldValue>Transporte aéreo regular en líneas aéreas nacionales</controllingFieldValue>
+            <controllingFieldValue>Transporte colectivo urbano y suburbano de pasajeros en autobuses de ruta fija</controllingFieldValue>
+            <controllingFieldValue>Otro autotransporte local de carga general</controllingFieldValue>
+            <valueName>Transporte y almacenamiento</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Otros servicios de orientación y trabajo social prestados por el sector privado</controllingFieldValue>
+            <controllingFieldValue>Hospitales generales del sector privado</controllingFieldValue>
+            <controllingFieldValue>Hospitales generales del sector público</controllingFieldValue>
+            <controllingFieldValue>Consultorios de medicina general del sector privado</controllingFieldValue>
+            <controllingFieldValue>Consultorios dentales del sector privado</controllingFieldValue>
+            <controllingFieldValue>Laboratorios médicos y de diagnóstico del sector privado</controllingFieldValue>
+            <controllingFieldValue>Orfanatos y otras residencias de asistencia social del sector privado</controllingFieldValue>
+            <controllingFieldValue>Otros consultorios del sector público para el cuidado de la salud</controllingFieldValue>
+            <valueName>Salud</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Otros servicios de telecomunicaciones</controllingFieldValue>
+            <controllingFieldValue>Procesamiento electrónico de información, hospedaje y otros servicios relacionados</controllingFieldValue>
+            <controllingFieldValue>Producción de películas</controllingFieldValue>
+            <controllingFieldValue>Bibliotecas y archivos del sector privado</controllingFieldValue>
+            <controllingFieldValue>Telecomunicaciones</controllingFieldValue>
+            <controllingFieldValue>Transmisión de programas de radio</controllingFieldValue>
+            <controllingFieldValue>Edición de otros materiales integrada con la impresión</controllingFieldValue>
+            <controllingFieldValue>Edición de revistas y otras publicaciones periódicas</controllingFieldValue>
+            <controllingFieldValue>Edición de revistas y otras publicaciones periódicas integrada con la impresión</controllingFieldValue>
+            <controllingFieldValue>Edición de software y edición de software integrada con la reproducción</controllingFieldValue>
+            <valueName>Información en medios masivos</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Otros servicios profesionales, científicos y técnicos</controllingFieldValue>
+            <controllingFieldValue>Agencias de representación de medios</controllingFieldValue>
+            <controllingFieldValue>Servicios de apoyo para efectuar trámites legales</controllingFieldValue>
+            <controllingFieldValue>Servicios de carga y descarga para el transporte por agua</controllingFieldValue>
+            <controllingFieldValue>Servicios de consultoría en administración</controllingFieldValue>
+            <controllingFieldValue>Servicios de contabilidad y auditoría</controllingFieldValue>
+            <controllingFieldValue>Servicios de fotografía y videograbación</controllingFieldValue>
+            <controllingFieldValue>Servicios veterinarios para mascotas prestados por el sector privado</controllingFieldValue>
+            <valueName>Servicios profesionales</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Otros servicios recreativos prestados por el sector privado</controllingFieldValue>
+            <controllingFieldValue>Casinos</controllingFieldValue>
+            <controllingFieldValue>Clubes deportivos del sector privado</controllingFieldValue>
+            <valueName>Servicios recreativos</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Otros servicios relacionados con los servicios inmobiliarios</controllingFieldValue>
+            <controllingFieldValue>Inmobiliarias y corredores de bienes raíces</controllingFieldValue>
+            <controllingFieldValue>Alquiler de automóviles sin chofer</controllingFieldValue>
+            <controllingFieldValue>Alquiler de maquinaria y equipo comercial y de servicios</controllingFieldValue>
+            <controllingFieldValue>Alquiler sin intermediación de oficinas y locales comerciales</controllingFieldValue>
+            <controllingFieldValue>Alquiler sin intermediación de teatros, estadios, auditorios y similares</controllingFieldValue>
+            <valueName>Servicios inmobiliarios</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Gobierno Estatal</controllingFieldValue>
+            <controllingFieldValue>Gobierno Federal</controllingFieldValue>
+            <controllingFieldValue>Gobierno Municipal</controllingFieldValue>
+            <controllingFieldValue>Impartición de justicia y mantenimiento de la seguridad y el orden público</controllingFieldValue>
+            <controllingFieldValue>Regulación y fomento del desarrollo económico</controllingFieldValue>
+            <controllingFieldValue>Actividades de seguridad nacional</controllingFieldValue>
+            <controllingFieldValue>Relaciones exteriores</controllingFieldValue>
+            <controllingFieldValue>Administración pública en general</controllingFieldValue>
+            <valueName>Gobierno</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Purificación y embotellado de agua</controllingFieldValue>
+            <controllingFieldValue>Elaboración de azúcar de caña</controllingFieldValue>
+            <controllingFieldValue>Elaboración de otros alimentos</controllingFieldValue>
+            <controllingFieldValue>Elaboración de refrescos y otras bebidas no alcohólicas</controllingFieldValue>
+            <controllingFieldValue>Otras industrias manufactureras</controllingFieldValue>
+            <controllingFieldValue>Fabricación de botellas de plástico</controllingFieldValue>
+            <controllingFieldValue>Fabricación de maquinaria y equipo para la industria metalmecánica</controllingFieldValue>
+            <controllingFieldValue>Fabricación de maquinaria y equipo para la industria textil</controllingFieldValue>
+            <controllingFieldValue>Fabricación de motores y sus partes para vehículos automotrices</controllingFieldValue>
+            <controllingFieldValue>Fabricación de petroquímicos básicos del gas natural y del petróleo refinado</controllingFieldValue>
+            <controllingFieldValue>Fabricación de preparaciones farmacéuticas</controllingFieldValue>
+            <valueName>Industrias manufactureras</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Hoteles con otros servicios integrados</controllingFieldValue>
+            <controllingFieldValue>Restaurantes con servicio de preparación de alimentos a la carta o de comida corrida</controllingFieldValue>
+            <valueName>Hoteles y restaurantes</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Intermediación de comercio al por mayor de productos para la industria, el comercio y los servicios, excepto a través de internet y de otros medios electrónicos</controllingFieldValue>
+            <controllingFieldValue>Intermediación de comercio al por mayor para productos de uso doméstico y personal, excepto a través de internet y de otros medios electrónicos</controllingFieldValue>
+            <controllingFieldValue>Comercio al por mayor de equipo y material eléctrico</controllingFieldValue>
+            <controllingFieldValue>Comercio al por mayor de ganado y aves en pie</controllingFieldValue>
+            <controllingFieldValue>Comercio al por mayor de maquinaria y equipo agropecuario, forestal y para la pesca</controllingFieldValue>
+            <controllingFieldValue>Comercio al por mayor de maquinaria y equipo para la construcción y la minería</controllingFieldValue>
+            <controllingFieldValue>Comercio al por mayor de otros alimentos</controllingFieldValue>
+            <controllingFieldValue>Comercio al por mayor de productos químicos para la industria farmacéutica y para otro uso industrial</controllingFieldValue>
+            <controllingFieldValue>Comercio al por menor de artículos de joyería y relojes</controllingFieldValue>
+            <valueName>Comercio al por mayor</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Asociaciones, organizaciones y cámaras de productores, comerciantes y prestadores de servicios</controllingFieldValue>
+            <controllingFieldValue>Asociaciones y organizaciones civiles</controllingFieldValue>
+            <controllingFieldValue>Asociaciones y organizaciones laborales y sindicales</controllingFieldValue>
+            <controllingFieldValue>Administración de cementerios pertenecientes al sector privado</controllingFieldValue>
+            <controllingFieldValue>Salones y clínicas de belleza y peluquerías</controllingFieldValue>
+            <valueName>Otros servicios</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Recolección de residuos peligrosos por el sector privado</controllingFieldValue>
+            <controllingFieldValue>Servicios de administración de negocios</controllingFieldValue>
+            <controllingFieldValue>Agencias de viajes</controllingFieldValue>
+            <controllingFieldValue>Servicios de protección y custodia mediante el monitoreo de sistemas de seguridad</controllingFieldValue>
+            <controllingFieldValue>Servicios de recepción de llamadas telefónicas y promoción por teléfono</controllingFieldValue>
+            <controllingFieldValue>Suministro de personal permanente</controllingFieldValue>
+            <controllingFieldValue>Organización de excursiones y paquetes turísticos para agencias de viajes (Operadores de tours)</controllingFieldValue>
+            <controllingFieldValue>Organizadores de convenciones y ferias comerciales e industriales</controllingFieldValue>
+            <valueName>Servicios de apoyo a los negocios</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Beneficio de productos agrícolas</controllingFieldValue>
+            <valueName>Agricultura</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Comercio al por menor de artículos de papelería</controllingFieldValue>
+            <controllingFieldValue>Comercio al por menor de artículos para la limpieza</controllingFieldValue>
+            <controllingFieldValue>Comercio al por menor de artículos y aparatos deportivos</controllingFieldValue>
+            <controllingFieldValue>Comercio al por menor de automóviles y camionetas nuevos</controllingFieldValue>
+            <controllingFieldValue>Comercio al por menor de automóviles y camionetas usados</controllingFieldValue>
+            <controllingFieldValue>Comercio al por menor de calzado</controllingFieldValue>
+            <controllingFieldValue>Comercio al por menor de carnes rojas</controllingFieldValue>
+            <controllingFieldValue>Comercio al por menor de electrodomésticos menores y aparatos de línea blanca</controllingFieldValue>
+            <controllingFieldValue>Comercio al por menor de gas L.P. en cilindros y para tanques estacionarios</controllingFieldValue>
+            <controllingFieldValue>Comercio al por menor de gasolina y diésel</controllingFieldValue>
+            <controllingFieldValue>Comercio al por menor de libros</controllingFieldValue>
+            <controllingFieldValue>Comercio al por menor de llantas y cámaras para automóviles, camionetas y camiones</controllingFieldValue>
+            <controllingFieldValue>Comercio al por menor de materiales para la construcción en tiendas de autoservicio especializadas</controllingFieldValue>
+            <controllingFieldValue>Comercio al por menor de mobiliario, equipo y accesorios de cómputo</controllingFieldValue>
+            <controllingFieldValue>Comercio al por menor de muebles para el hogar</controllingFieldValue>
+            <controllingFieldValue>Comercio al por menor de otros alimentos</controllingFieldValue>
+            <controllingFieldValue>Comercio al por menor de partes y refacciones nuevas para automóviles, camionetas y camiones</controllingFieldValue>
+            <controllingFieldValue>Comercio al por menor de ropa, excepto de bebé y lencería</controllingFieldValue>
+            <controllingFieldValue>Comercio al por menor de teléfonos y otros aparatos de comunicación</controllingFieldValue>
+            <controllingFieldValue>Comercio al por menor de vinos y licores</controllingFieldValue>
+            <controllingFieldValue>Comercio al por menor en ferreterías y tlapalerías</controllingFieldValue>
+            <controllingFieldValue>Comercio al por menor en supermercados</controllingFieldValue>
+            <controllingFieldValue>Comercio al por menor en tiendas de abarrotes, ultramarinos y misceláneas</controllingFieldValue>
+            <controllingFieldValue>Comercio al por menor en tiendas de artesanías</controllingFieldValue>
+            <controllingFieldValue>Comercio al por menor en tiendas departamentales</controllingFieldValue>
+            <controllingFieldValue>Farmacias sin minisúper</controllingFieldValue>
+            <valueName>Comercio al por menor</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Supervisión de edificación residencial</controllingFieldValue>
+            <controllingFieldValue>Construcción de obras para el tratamiento, distribución y suministro de agua y drenaje</controllingFieldValue>
+            <valueName>Construcción</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Escuelas de computación del sector privado</controllingFieldValue>
+            <controllingFieldValue>Escuelas de educación media superior del sector privado</controllingFieldValue>
+            <controllingFieldValue>Escuelas de educación media superior del sector público</controllingFieldValue>
+            <controllingFieldValue>Escuelas de educación primaria del sector privado</controllingFieldValue>
+            <controllingFieldValue>Escuelas de educación superior del sector privado</controllingFieldValue>
+            <controllingFieldValue>Escuelas de educación superior del sector público</controllingFieldValue>
+            <controllingFieldValue>Escuelas de educación técnica superior del sector privado</controllingFieldValue>
+            <controllingFieldValue>Escuelas de idiomas del sector privado</controllingFieldValue>
+            <controllingFieldValue>Escuelas para la capacitación de ejecutivos del sector privado</controllingFieldValue>
+            <valueName>Educación</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Minería de carbón mineral</controllingFieldValue>
+            <controllingFieldValue>Minería de otros minerales metálicos</controllingFieldValue>
+            <valueName>Minería</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

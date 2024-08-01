@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>dmtLeadsSur</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>DTT-240322-MVP1-TEL841 - comparticion de lead zona sur</description>
+        <label>Leads Sur</label>
+        <sharedTo>
+            <role>PAM_Sur</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>dtmZona__c</field>
+            <operation>equals</operation>
+            <value>Sur</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>dtmLeadsCentro</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>DTT-240322-MVP1-TEL841 - comparticion de lead zona centro</description>
+        <label>Leads Centro</label>
+        <sharedTo>
+            <role>PAM_Centro</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>dtmZona__c</field>
+            <operation>equals</operation>
+            <value>Centro</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>dtmLeadsMetro</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>DTT-240322-MVP1-TEL841 - comparticion de lead zona metro</description>
+        <label>Leads Metro</label>
+        <sharedTo>
+            <role>PAM_Metro</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>dtmZona__c</field>
+            <operation>equals</operation>
+            <value>Metro</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>dtmLeadsNorte</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Leads Norte</label>
+        <sharedTo>
+            <role>PAM_Norte</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>dtmZona__c</field>
+            <operation>equals</operation>
+            <value>Norte</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+</SharingRules>

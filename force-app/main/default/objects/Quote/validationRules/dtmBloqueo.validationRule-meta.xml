@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>dtmBloqueo</fullName>
+    <active>true</active>
+    <description>TEL-447 Regla que bloque la cotización cuando se encuentra en la etapa de &quot;Validación&quot; y &quot;Negociación&quot;</description>
+    <errorConditionFormula>AND( ISCHANGED(Status), ISPICKVAL(PRIORVALUE( Status ), &quot;Validación&quot;), AND( $Profile.Name &lt;&gt; &quot;Administrador del sistema&quot;,$Profile.Name &lt;&gt; &quot;Partner Account Manager&quot;))</errorConditionFormula>
+    <errorMessage>Lo sentimos, no se tiene permitido modificar la cotización en la etapa de “Validación y/o Negociación&quot;</errorMessage>
+</ValidationRule>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>dtmLead__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>DTT-240421-MVP1-TEL60 - campo para relacionar cuenta con lead</description>
+    <externalId>false</externalId>
+    <label>dtmLead</label>
+    <referenceTo>Lead</referenceTo>
+    <relationshipLabel>Accounts</relationshipLabel>
+    <relationshipName>Accounts</relationshipName>
+    <required>false</required>
+    <type>Lookup</type>
+</CustomField>

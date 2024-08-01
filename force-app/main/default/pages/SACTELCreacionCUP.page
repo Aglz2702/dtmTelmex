@@ -1,0 +1,15 @@
+<apex:page standardController="Opportunity" extensions="Telmex_CreacionCUPController" standardStylesheets="true" showHeader="false" sidebar="false">
+    
+    <apex:form >
+        <apex:pageBlock title="Crea Codigo Unico de Proyecto" mode="detail">
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!CupNuevo}" onclick="javascript:if {confirm('Deseas Crear Un Nuevo CUP?')} { return true; } else {return false;};" value="Crear Cup"/>
+            	<apex:commandButton action="{!goToOpportunity}" value="Regresar a Oportunidad" />
+            </apex:pageBlockButtons>
+            
+            <apex:outputText value="{!vTexto}" />
+            <apex:pageMessages />
+            
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

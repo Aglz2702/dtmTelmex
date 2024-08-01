@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>dtmTelmex</fullName>
+    <fields>Product2Id</fields>
+    <fields>Quantity</fields>
+    <fields>vlocity_cmt__BaseRecurringCharge__c</fields>
+    <fields>dtmMargen_de_ganancia__c</fields>
+    <fields>vlocity_cmt__RecurringCharge__c</fields>
+    <fields>dtmTotalRecurrente__c</fields>
+    <label>dtmTelmex</label>
+</CompactLayout>

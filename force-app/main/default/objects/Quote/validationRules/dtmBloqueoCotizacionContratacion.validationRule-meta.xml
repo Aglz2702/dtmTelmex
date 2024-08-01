@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>dtmBloqueoCotizacionContratacion</fullName>
+    <active>true</active>
+    <description>DTT-240411-MVP1-TEL-818 Regla que bloquea la cotización cuando se encuentra en la etapa de Contratación y / o Entregado</description>
+    <errorConditionFormula>IF( AND( OR(ISPICKVAL(PRIORVALUE( Status ), &quot;Contratación&quot;),
+             ISPICKVAL(PRIORVALUE( Status ), &quot;Entregado&quot;)) ,
+          OR(ISCHANGED(Status) ,
+             ISCHANGED(dtmFechadenegociacion__c),
+             ISCHANGED(dtmFechadecerrada__c),
+             ISCHANGED(dtmFechadecontratacion__c),
+ISCHANGED(Name),
+ISCHANGED(dtmFechadecreacion__c),
+ISCHANGED(dtmFechadevalidacion__c),
+ISCHANGED(dtmFechaderevisiontecnica__c),
+ISCHANGED(dtmFechadeentregado__c),
+ISCHANGED(Description)
+),  $Profile.Name &lt;&gt; &quot;Administrador del sistema&quot;) , 
+true,false)</errorConditionFormula>
+    <errorMessage>Lo sentimos, no se tiene permitido modificar la cotización en la etapa de “Contratación y/o Entrega</errorMessage>
+</ValidationRule>

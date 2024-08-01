@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>dtmGiro__c</fullName>
+    <description>DTT-240313-MVP1-Campo para seleccionar el giro del cliente</description>
+    <inlineHelpText>El giro es la principal actividad de la empresa o negocio.</inlineHelpText>
+    <label>Giro</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>dtmGiro</valueSetName>
+    </valueSet>
+</CustomField>

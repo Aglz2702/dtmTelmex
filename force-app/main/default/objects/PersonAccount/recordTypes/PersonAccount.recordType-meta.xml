@@ -1,0 +1,2217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PersonAccount</fullName>
+    <active>true</active>
+    <label>Cuenta personal</label>
+    <picklistValues>
+        <picklist>AccountSource</picklist>
+        <values>
+            <fullName>Aliado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cliente</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Competencia</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Consultor Externo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Evento especial</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Medios digitales</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Newsletter</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Telmex</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Visita a Centro de Experiencias</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Visita a Triara</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Industry</picklist>
+        <values>
+            <fullName>Agriculture</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Apparel</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Banking</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Biotechnology</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Chemicals</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Communications</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Construction</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Consulting</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Education</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Electronics</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Energy</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Engineering</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Entertainment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Environmental</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Finance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Food %26 Beverage</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Government</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Healthcare</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hospitality</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Insurance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Machinery</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Manufacturing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Media</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not For Profit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Recreation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Retail</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Shipping</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Technology</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Telecommunications</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transportation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Utilities</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Ownership</picklist>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Private</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Public</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Subsidiary</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Rating</picklist>
+        <values>
+            <fullName>Altamente probable</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Medianamente probable</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Poco probable</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type</picklist>
+        <values>
+            <fullName>Analyst</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Competitor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Customer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Integrator</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Investor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partner</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Press</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Prospect</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Reseller</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>dtmDireccionDivisional__c</picklist>
+        <values>
+            <fullName>Partners</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>dtmEstadoProvinciaEnvio__c</picklist>
+        <values>
+            <fullName>Aguascalientes</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Baja California</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Baja California Sur</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Campeche</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Chiapas</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Chihuahua</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Coahuila</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Colima</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Distrito Federal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Durango</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Guanajuato</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Guerrero</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hidalgo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jalisco</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Michoacán</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Morelos</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>México</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Nayarit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Nuevo León</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Oaxaca</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Puebla</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Querétaro</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Quintana Roo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>San Luis Potosí</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sinaloa</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sonora</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tabasco</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tamaulipas</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tlaxcala</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Veracruz</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yucatán</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Zacatecas</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>dtmEstadoProvincia__c</picklist>
+        <values>
+            <fullName>Aguascalientes</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Baja California</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Baja California Sur</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Campeche</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Chiapas</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Chihuahua</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ciudad de México</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Coahuila de Zaragoza</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Colima</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Durango</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Guanajuato</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Guerrero</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hidalgo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jalisco</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Michoacán de Ocampo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Morelos</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>México</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Nayarit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Nuevo León</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Oaxaca</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Puebla</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Querétaro</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Quintana Roo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>San Luis Potosí</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sinaloa</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sonora</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tabasco</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tamaulipas</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tlaxcala</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Veracruz</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yucatán</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Zacatecas</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>dtmGiro__c</picklist>
+        <values>
+            <fullName>Actividades de seguridad nacional</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Administración de aeropuertos y helipuertos</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Administración de cementerios pertenecientes al sector privado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Administración de fondos para el retiro</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Administración pública en general</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Agencias de representación de medios</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Agencias de viajes</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Agentes%2C ajustadores y gestores de seguros y fianzas</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Almacenes generales de depósito</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Alquiler de automóviles sin chofer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Alquiler de maquinaria y equipo comercial y de servicios</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Alquiler sin intermediación de oficinas y locales comerciales</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Alquiler sin intermediación de teatros%2C estadios%2C auditorios y similares</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Asesoría en inversiones</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Asociaciones y organizaciones civiles</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Asociaciones y organizaciones laborales y sindicales</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Asociaciones%2C organizaciones y cámaras de productores%2C comerciantes y prestadores de servicios</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Autotransporte local de productos agrícolas sin refrigeración</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Banca múltiple</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Beneficio de productos agrícolas</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bibliotecas y archivos del sector privado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cajas de ahorro popular</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Casas de bolsa</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Casas de cambio</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Casas de empeño</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Casinos</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Clubes deportivos del sector privado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercialización de energía eléctrica</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio al por mayor de equipo y material eléctrico</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio al por mayor de ganado y aves en pie</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio al por mayor de maquinaria y equipo agropecuario%2C forestal y para la pesca</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio al por mayor de maquinaria y equipo para la construcción y la minería</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio al por mayor de otros alimentos</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio al por mayor de productos químicos para la industria farmacéutica y para otro uso industrial</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio al por menor de artículos de joyería y relojes</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio al por menor de artículos de papelería</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio al por menor de artículos para la limpieza</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio al por menor de artículos y aparatos deportivos</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio al por menor de automóviles y camionetas nuevos</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio al por menor de automóviles y camionetas usados</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio al por menor de calzado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio al por menor de carnes rojas</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio al por menor de electrodomésticos menores y aparatos de línea blanca</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio al por menor de gas L%2EP%2E en cilindros y para tanques estacionarios</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio al por menor de gasolina y diésel</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio al por menor de libros</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio al por menor de llantas y cámaras para automóviles%2C camionetas y camiones</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio al por menor de materiales para la construcción en tiendas de autoservicio especializadas</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio al por menor de mobiliario%2C equipo y accesorios de cómputo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio al por menor de muebles para el hogar</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio al por menor de otros alimentos</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio al por menor de partes y refacciones nuevas para automóviles%2C camionetas y camiones</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio al por menor de ropa%2C excepto de bebé y lencería</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio al por menor de teléfonos y otros aparatos de comunicación</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio al por menor de vinos y licores</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio al por menor en ferreterías y tlapalerías</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio al por menor en supermercados</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio al por menor en tiendas de abarrotes%2C ultramarinos y misceláneas</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio al por menor en tiendas de artesanías</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio al por menor en tiendas departamentales</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Compañías de seguros</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Construcción de obras para el tratamiento%2C distribución y suministro de agua y drenaje</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Consultorios de medicina general del sector privado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Consultorios dentales del sector privado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Edición de otros materiales integrada con la impresión</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Edición de revistas y otras publicaciones periódicas</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Edición de revistas y otras publicaciones periódicas integrada con la impresión</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Edición de software y edición de software integrada con la reproducción</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Elaboración de azúcar de caña</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Elaboración de otros alimentos</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Elaboración de refrescos y otras bebidas no alcohólicas</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Escuelas de computación del sector privado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Escuelas de educación media superior del sector privado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Escuelas de educación media superior del sector público</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Escuelas de educación primaria del sector privado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Escuelas de educación superior del sector privado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Escuelas de educación superior del sector público</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Escuelas de educación técnica superior del sector privado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Escuelas de idiomas del sector privado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Escuelas para la capacitación de ejecutivos del sector privado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fabricación de botellas de plástico</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fabricación de maquinaria y equipo para la industria metalmecánica</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fabricación de maquinaria y equipo para la industria textil</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fabricación de motores y sus partes para vehículos automotrices</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fabricación de petroquímicos básicos del gas natural y del petróleo refinado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fabricación de preparaciones farmacéuticas</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Farmacias sin minisúper</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fondos y fideicomisos financieros</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Generación%2C transmisión y distribución de energía eléctrica%2C suministro de agua y de gas por ductos al consumidor final</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Gobierno Estatal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Gobierno Federal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Gobierno Municipal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hospitales generales del sector privado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hospitales generales del sector público</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hoteles con otros servicios integrados</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Impartición de justicia y mantenimiento de la seguridad y el orden público</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Inmobiliarias y corredores de bienes raíces</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Intermediación de comercio al por mayor de productos para la industria%2C el comercio y los servicios%2C excepto a través de internet y de otros medios electrónicos</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Intermediación de comercio al por mayor para productos de uso doméstico y personal%2C excepto a través de internet y de otros medios electrónicos</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Laboratorios médicos y de diagnóstico del sector privado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Minería de carbón mineral</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Minería de otros minerales metálicos</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Orfanatos y otras residencias de asistencia social del sector privado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Organización de excursiones y paquetes turísticos para agencias de viajes %28Operadores de tours%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Organizadores de convenciones y ferias comerciales e industriales</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Otras industrias manufactureras</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Otras instituciones de intermediación crediticia y financiera no bursátil</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Otro autotransporte local de carga general</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Otros consultorios del sector público para el cuidado de la salud</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Otros servicios de almacenamiento con instalaciones especializadas</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Otros servicios de orientación y trabajo social prestados por el sector privado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Otros servicios de telecomunicaciones</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Otros servicios profesionales%2C científicos y técnicos</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Otros servicios recreativos prestados por el sector privado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Otros servicios relacionados con el transporte aéreo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Otros servicios relacionados con los servicios inmobiliarios</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Procesamiento electrónico de información%2C hospedaje y otros servicios relacionados</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Producción de películas</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Purificación y embotellado de agua</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Recolección de residuos peligrosos por el sector privado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Regulación y fomento del desarrollo económico</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Relaciones exteriores</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Restaurantes con servicio de preparación de alimentos a la carta o de comida corrida</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Salones y clínicas de belleza y peluquerías</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Servicios de administración de carreteras%2C puentes y servicios auxiliares</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Servicios de administración de negocios</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Servicios de agencias aduanales</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Servicios de apoyo para efectuar trámites legales</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Servicios de carga y descarga para el transporte por agua</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Servicios de consultoría en administración</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Servicios de contabilidad y auditoría</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Servicios de fotografía y videograbación</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Servicios de mensajería y paquetería foránea</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Servicios de protección y custodia mediante el monitoreo de sistemas de seguridad</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Servicios de recepción de llamadas telefónicas y promoción por teléfono</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Servicios para la navegación por agua</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Servicios relacionados con la intermediación crediticia no bursátil</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Servicios veterinarios para mascotas prestados por el sector privado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sociedades de inversión especializadas en fondos para el retiro</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Suministro de personal permanente</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Supervisión de edificación residencial</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Telecomunicaciones</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transmisión de programas de radio</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transporte aéreo regular en líneas aéreas nacionales</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transporte colectivo urbano y suburbano de pasajeros en autobuses de ruta fija</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>dtmNivelDePartner__c</picklist>
+        <values>
+            <fullName>Oro</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Plata</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Platino</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>dtmPaisEnvio__c</picklist>
+        <values>
+            <fullName>Mexico</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>dtmPais__c</picklist>
+        <values>
+            <fullName>Estados Unidos</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>México</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>dtmSectorDENUE__c</picklist>
+        <values>
+            <fullName>Agricultura</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio al por mayor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio al por menor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Construcción</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Educación</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Energia%2C gas y agua</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Finanzas y seguros</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Gobierno</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hoteles y restaurantes</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Industrias manufactureras</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Información en medios masivos</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Minería</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Otros servicios</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Salud</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Servicios de apoyo a los negocios</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Servicios inmobiliarios</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Servicios profesionales</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Servicios recreativos</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transporte y almacenamiento</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>dtmSubdireccionEmpresarial__c</picklist>
+        <values>
+            <fullName>Bajio</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Golfo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Metro</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Noroeste</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Norte</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Occidente</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pacifico</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sureste</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Telnor</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>dtmSubsectorDENUE__c</picklist>
+        <values>
+            <fullName>Actividades bursátiles%2C cambiarias y de inversión financiera</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Actividades legislativas%2C gubernamentales y de impartición de justicia</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Asociaciones y organizaciones</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Autotransporte de carga</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio al por mayor de abarrotes%2C alimentos%2C bebidas%2C hielo y tabaco</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio al por mayor de maquinaria%2C equipo y mobiliario para actividades agropecuarias%2C industriales%2C de servicios y comerciales%2C y de otra maquinaria y equipo de uso general</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio al por mayor de materias primas agropecuarias y forestales%2C para la industria%2C y materiales de desecho</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio al por menor de abarrotes%2C alimentos%2C bebidas%2C hielo y tabaco</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio al por menor de artículos de ferretería%2C tlapalería y vidrios</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio al por menor de artículos de papelería%2C para el esparcimiento y otros artículos de uso personal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio al por menor de artículos para el cuidado de la salud</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio al por menor de enseres domésticos%2C computadoras%2C artículos para la decoración de interiores y artículos usados</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio al por menor de productos textiles%2C bisutería%2C accesorios de vestir y calzado</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio al por menor de vehículos de motor%2C refacciones%2C combustibles y lubricantes</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comercio al por menor en tiendas de autoservicio y departamentales</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Compañías de seguros%2C fianzas%2C y administración de fondos para el retiro</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Construcción de obras de ingeniería civil</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Edición de periódicos%2C revistas%2C libros%2C software y otros materiales%2C y edición de estas publicaciones integrada con la impresión</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Edificación</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fabricación de equipo de transporte</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fabricación de maquinaria y equipo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Generación%2C transmisión y distribución de energía eléctrica%2C suministro de agua y de gas por ductos al consumidor final</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Generación%2C transmisión%2C distribución y comercialización de energía eléctrica%2C suministro de agua y de gas natural por ductos al consumidor final</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hospitales</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Industria alimentaria</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Industria de las bebidas y del tabaco</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Industria del plástico y del hule</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Industria fílmica y del video%2C e industria del sonido</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Industria química</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Instituciones de intermediación crediticia y financiera no bursátil</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Intermediación de comercio al por mayor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Manejo de residuos y servicios de remediación</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Minería de minerales metálicos y no metálicos%2C excepto petróleo y gas</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Otras industrias manufactureras</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Otros servicios de asistencia social</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Otros servicios de información</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Procesamiento electrónico de información%2C hospedaje y otros servicios relacionados</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Radio y televisión</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Residencias de asistencia social y para el cuidado de la salud</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Servicios de almacenamiento</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Servicios de alojamiento temporal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Servicios de alquiler de bienes muebles</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Servicios de apoyo a los negocios</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Servicios de entretenimiento en instalaciones recreativas y otros servicios recreativos</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Servicios de mensajería y paquetería</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Servicios de preparación de alimentos y bebidas</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Servicios educativos</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Servicios inmobiliarios</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Servicios médicos de consulta externa y servicios relacionados</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Servicios personales</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Servicios profesionales%2C científicos y técnicos</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Servicios relacionados con el transporte</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Servicios relacionados con las actividades agropecuarias y forestales</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sociedades de inversión especializadas en fondos para el retiro y fondos de inversión</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Telecomunicaciones</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transporte aéreo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transporte terrestre de pasajeros%2C excepto por ferrocarril</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>dtmTratamiento__c</picklist>
+        <values>
+            <fullName>Act%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Arqt%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CP%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Captn%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cmdte%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cor%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Dr%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Dra%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Eco%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Emb%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Gral%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ing%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lic%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mat%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>May%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mtro%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sr%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sra%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Srita%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tte%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tteco%2E</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>dtmZona__c</picklist>
+        <values>
+            <fullName>Centro</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Metro</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Norte</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sur</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>vlocity_cmt__AccountPaymentType__c</picklist>
+        <values>
+            <fullName>Postpaid</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Prepaid</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>vlocity_cmt__Active__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>vlocity_cmt__AutoPaymentAmount__c</picklist>
+        <values>
+            <fullName>Full Balance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Minimum Due</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>vlocity_cmt__BillCycle__c</picklist>
+        <values>
+            <fullName>1</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>vlocity_cmt__BillDeliveryMethod__c</picklist>
+        <values>
+            <fullName>Electronic Statements Online</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Paper Billing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>eMail</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>vlocity_cmt__BillFormat__c</picklist>
+        <values>
+            <fullName>Detail</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Summary</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>vlocity_cmt__BillFrequency__c</picklist>
+        <values>
+            <fullName>Monthly</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Quarterly</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Weekly</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>vlocity_cmt__BillingAccountStatus__c</picklist>
+        <values>
+            <fullName>Current</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In Collections</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Overdue</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>vlocity_cmt__ContactPreferences__c</picklist>
+        <values>
+            <fullName>Mail</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Phone</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>eMail</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>vlocity_cmt__CustomerClass__c</picklist>
+        <values>
+            <fullName>C%26I</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Residential</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SMB</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>vlocity_cmt__CustomerOfBrand__c</picklist>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>vlocity_cmt__CustomerPriority__c</picklist>
+        <values>
+            <fullName>High</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Low</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Medium</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>vlocity_cmt__CustomerSentiment__pc</picklist>
+        <values>
+            <fullName>Disgruntled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Dissatisfied</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Neutral</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Promoter</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Satisfied</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>vlocity_cmt__CustomerValue__c</picklist>
+        <values>
+            <fullName>Bronze</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Diamond</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Gold</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Platinum</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Silver</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>vlocity_cmt__EmploymentStatus__pc</picklist>
+        <values>
+            <fullName>Employed Full-Time</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Employed Part-Time</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Retired</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Self-Employed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Student</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Unemployed</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>vlocity_cmt__Gender__pc</picklist>
+        <values>
+            <fullName>Female</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Male</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>vlocity_cmt__Juridsiction1__c</picklist>
+        <values>
+            <fullName>Company</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Region</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>State</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>vlocity_cmt__Jurisdiction2__c</picklist>
+        <values>
+            <fullName>Secondary jurisdiction A</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Secondary jurisdiction B</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>vlocity_cmt__LegalForm__c</picklist>
+        <values>
+            <fullName>Corporation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>LLC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>LLP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not for Profit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Partnership</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sole Proprietorship</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>vlocity_cmt__SLA__c</picklist>
+        <values>
+            <fullName>Bronze</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Gold</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Platinum</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Silver</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>vlocity_cmt__StateOfIssuance__pc</picklist>
+        <values>
+            <fullName>AK</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>AL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>AR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>AZ</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>HI</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ID</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>KS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>KY</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>LA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ME</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MI</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ND</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NH</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NJ</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NV</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NY</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OH</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OK</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>RI</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TX</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>UT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>WA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>WV</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>WY</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>vlocity_cmt__Status__c</picklist>
+        <values>
+            <fullName>Activa</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Inactiva</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ninguno</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>vlocity_cmt__Status__pc</picklist>
+        <values>
+            <fullName>Active</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Expired</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Inactive</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pending</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>vlocity_cmt__TaxExemptionType__c</picklist>
+        <values>
+            <fullName>Exempt</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Non-exempt</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>vlocity_cmt__Type__pc</picklist>
+        <values>
+            <fullName>Associate Agent</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Broker</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Licensed Agent</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Managing Agent</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>vlocity_cmt__UpsellOpportunity__c</picklist>
+        <values>
+            <fullName>Maybe</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>vlocity_cmt__vCustomerPriority__c</picklist>
+        <values>
+            <fullName>High</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Low</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Medium</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>vlocity_cmt__vSLA__c</picklist>
+        <values>
+            <fullName>Bronze</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Gold</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Platinum</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Silver</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>
