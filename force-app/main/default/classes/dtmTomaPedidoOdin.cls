@@ -80,28 +80,50 @@ global class dtmTomaPedidoOdin {
         switch on produPadre.Product2.Name{
             when 'Correo Negocio'{
                 if(productosHijos != null){
-                    for(QuoteLineItem item :productosHijos){
-                        if(item.Product2.ProductCode=='CUENTAS_ADICIONALES'){
-                            jsonRequest += '"recursos":[';
-                            jsonRequest += '{';
-                            jsonRequest += '"nombre": "' + produAgrupador.Product2.dtmLegacyName__c + '",';
-                            jsonRequest += '"valor": "' + Integer.valueOf(item.Quantity)+ '"';
-                            jsonRequest += '}';
-                            jsonRequest += '],';
+                    Map<String, Object> dominioExistente = (Map<String, Object>) JSON.deserializeUntyped(produPadre.vlocity_cmt__AttributeSelectedValues__c);
+                    String desicion = (String) dominioExistente.get('ATT_CNEG_POSEE_DOMINIO');
+                    if(desicion=='No'){
+                        for(QuoteLineItem item :productosHijos){
+                            if(item.Product2.ProductCode=='CUENTAS_ADICIONALES'){
+                                jsonRequest += '"recursos":[';
+                                jsonRequest += '{';
+                                jsonRequest += '"nombre": "' + produAgrupador.Product2.dtmLegacyName__c + '",';
+                                jsonRequest += '"valor": "' + Integer.valueOf(item.Quantity)+ '"';
+                                jsonRequest += '}';
+                                jsonRequest += '],';
+                            }
+                            if(item.Product2.ProductCode=='DOMINIO'){
+                                Map<String, Object> parsedValue = (Map<String, Object>) JSON.deserializeUntyped(item.vlocity_cmt__AttributeSelectedValues__c);
+                                String primero = (String) parsedValue.get('ATT_DOM_NOMBRE');
+                                String segundo = (String) parsedValue.get('ATT_DOM_TIPO');
+                                jsonRequest += '"suscripcionAdicional": [';
+                                jsonRequest += '{';
+                                jsonRequest += '"nombre": "' + item.Product2.ProductCode + '",';
+                                jsonRequest += '"valor": "' + primero+segundo + '"';
+                                jsonRequest += '}';               
+                                jsonRequest += ']';
+                            }
+                            System.debug('jsonRequest '+jsonRequest);
                         }
-                        if(item.Product2.ProductCode=='DOMINIO'){
-                            Map<String, Object> parsedValue = (Map<String, Object>) JSON.deserializeUntyped(item.vlocity_cmt__AttributeSelectedValues__c);
-                            String primero = (String) parsedValue.get('ATT_DOM_NOMBRE');
-                            String segundo = (String) parsedValue.get('ATT_DOM_TIPO');
-                            jsonRequest += '"suscripcionAdicional": [';
-                            jsonRequest += '{';
-                            jsonRequest += '"nombre": "' + item.Product2.ProductCode + '",';
-                            jsonRequest += '"valor": "' + primero+segundo + '"';
-                            jsonRequest += '}';               
-                            jsonRequest += ']';
+                    }else{
+                        for(QuoteLineItem item :productosHijos){
+                            if(item.Product2.ProductCode=='CUENTAS_ADICIONALES'){
+                                jsonRequest += '"recursos":[';
+                                jsonRequest += '{';
+                                jsonRequest += '"nombre": "' + produAgrupador.Product2.dtmLegacyName__c + '",';
+                                jsonRequest += '"valor": "' + Integer.valueOf(item.Quantity)+ '"';
+                                jsonRequest += '}';
+                                jsonRequest += '],';
+                            }
                         }
-                        System.debug('jsonRequest '+jsonRequest);
-                    }
+                        String dominioActual = (String) dominioExistente.get('ATT_DOM_ACTUAL');
+                                jsonRequest += '"suscripcionAdicional": [';
+                                jsonRequest += '{';
+                                jsonRequest += '"nombre": "DOMINIO_EXISTENTE",';
+                                jsonRequest += '"valor": "' + dominioActual + '"';
+                                jsonRequest += '}';               
+                                jsonRequest += ']';
+                    } 
                 } 
             }
             when 'Respaldo de Información'{

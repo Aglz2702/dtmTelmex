@@ -28,7 +28,7 @@ trigger dtmAjustesSkuQli on QuoteLineItem (after insert, after update) {
     List<QuoteLineItem> lineItems = [
         SELECT Id, Product2.Name, Product2.vlocity_cmt__SpecificationType__c, vlocity_cmt__AttributeSelectedValues__c, 
                Product2.dtmSistemaContratacionActual__c, dtmSKUContratacion__c, dtmSKURenta__c, 
-               QuoteId, Product2.StockKeepingUnit, Product2.dtmProductSkuContratacion__c 
+               QuoteId, Product2.StockKeepingUnit, Product2.dtmProductSkuContratacion__c,Quote.dtmAttributeLineItem__c 
         FROM QuoteLineItem 
         WHERE Id IN :quoteLineItemIdToUpdate
     ];
@@ -90,11 +90,13 @@ trigger dtmAjustesSkuQli on QuoteLineItem (after insert, after update) {
                     }
                     when 'Licencia Analiticos', 'Licencia Analiticos y Mercadotecnia', 'Licencia Presencia y Localización' {
                         Map<String, Object> parsedValue = (Map<String, Object>) JSON.deserializeUntyped(item.vlocity_cmt__AttributeSelectedValues__c);
-                        String plazo = (String) parsedValue.get('ATT_PLAZO');
-                        System.debug('plazo: ' + plazo);
-                        if (plazo != null) {
-                            skuContracionNuevo = item.Product2.dtmProductSkuContratacion__c + plazo + 'M';
-                            skuRentaNuevo = item.Product2.StockKeepingUnit + plazo + 'M';
+                        String plazo = (String) parsedValue.get('ATT_WIFIANALITICO_PLAZO');
+                        String[] partes = plazo.split(' ');
+                        Integer plazofinal = Integer.valueOf(partes[0]);
+                        System.debug('plazo: ' + plazofinal);
+                        if (plazofinal != null) {
+                            skuContracionNuevo = item.Product2.dtmProductSkuContratacion__c + plazofinal + 'M';
+                            skuRentaNuevo = item.Product2.StockKeepingUnit + plazofinal + 'M';
                         }
                     }
                     when 'Access Point Huawei 5760', 'Access Point Huawei 5761', 'Access Point Huawei 5761R', 'Access Point Huawei 6760R' {
@@ -108,20 +110,22 @@ trigger dtmAjustesSkuQli on QuoteLineItem (after insert, after update) {
                     }
                     when 'Controladora Central Aruba 9004', 'Controladora Central Aruba 7010', 'Access Point Aruba 303H Casa - Sucursal', 'Access Point Aruba 505 Sucursal' {
                         Map<String, Object> parsedValue = (Map<String, Object>) JSON.deserializeUntyped(item.vlocity_cmt__AttributeSelectedValues__c);
-                        String plazo = (String) parsedValue.get('ATT_PLAZO');
+                        String plazo = (String) parsedValue.get('ATT_WIFIOBJECT_PLAZO');
                         System.debug('plazo: ' + plazo);
                         if (plazo != null) {
                             skuContracionNuevo = item.Product2.dtmProductSkuContratacion__c + plazo;
                             skuRentaNuevo = item.Product2.StockKeepingUnit + plazo;
                         }
                     }
-                    when 'MX67 CON SEGURIDAD AVANZADA (Sucursal)', 'MX68 CON SEGURIDAD AVANZADA (Sucursal)', 'MX95 CON SEGURIDAD AVANZADA (Sucursal)' {
+                    when 'MX67 CON SEGURIDAD AVANZADA', 'MX68 CON SEGURIDAD AVANZADA (Sucursal)', 'MX95 CON SEGURIDAD AVANZADA (Sucursal)' {
                         Map<String, Object> parsedValue = (Map<String, Object>) JSON.deserializeUntyped(item.vlocity_cmt__AttributeSelectedValues__c);
-                        String plazo = (String) parsedValue.get('ATT_PLAZO');
-                        System.debug('plazo: ' + plazo);
-                        if (plazo != null) {
-                            skuContracionNuevo = item.Product2.dtmProductSkuContratacion__c + plazo;
-                            skuRentaNuevo = item.Product2.StockKeepingUnit + plazo;
+                        String plazo = (String) parsedValue.get('ATT_PLZ_12M_24M_36M');
+                        String[] partes = plazo.split(' ');
+                        Integer plazofinal = Integer.valueOf(partes[0]);
+                        System.debug('plazo: ' + plazofinal);
+                        if (plazofinal != null) {
+                            skuContracionNuevo = item.Product2.dtmProductSkuContratacion__c + plazofinal;
+                            skuRentaNuevo = item.Product2.StockKeepingUnit + plazofinal;
                         }
                     }
                     when else {
@@ -162,7 +166,6 @@ trigger dtmAjustesSkuQli on QuoteLineItem (after insert, after update) {
             System.debug('Actualizando QuoteLineItem: ' + item.Id + ' con SKUContratacion: ' + skuContracionNuevo + ' y SKURenta: ' + skuRentaNuevo);
         }
     }
-
     if (!lineItemsToUpdate.isEmpty()) {
         System.debug('Registros a actualizar: ' + lineItemsToUpdate);
         update lineItemsToUpdate;
