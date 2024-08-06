@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
 	<types>
-		<members>dtmDatosAltaResellerController</members>
-		<members>dtmDatosResellerController</members>
-		<name>ApexClass</name>
-	</types>
-	<types>
-		<members>dtmDatosAltaReseller</members>
-		<members>dtmDatosReseller</members>
-		<name>ApexPage</name>
+		<members>dtmAlmacenamiento</members>
+		<name>ApexTrigger</name>
 	</types>
 	<version>60.0</version>
 </Package>
