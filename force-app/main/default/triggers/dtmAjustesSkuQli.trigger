@@ -1,5 +1,4 @@
 trigger dtmAjustesSkuQli on QuoteLineItem (after insert, after update) {
-    System.debug('Entrando en el trigger');
 
     Set<Id> quoteLineItemIdToUpdate = new Set<Id>();
 
@@ -14,7 +13,6 @@ trigger dtmAjustesSkuQli on QuoteLineItem (after insert, after update) {
         for (QuoteLineItem qli : Trigger.new) {
             QuoteLineItem oldQli = Trigger.oldMap.get(qli.Id);
             if (qli.vlocity_cmt__AttributeSelectedValues__c != oldQli.vlocity_cmt__AttributeSelectedValues__c) {
-                System.debug('Procesando actualización: ' + qli.Id);
                 quoteLineItemIdToUpdate.add(qli.Id);
             }
         }
@@ -25,104 +23,91 @@ trigger dtmAjustesSkuQli on QuoteLineItem (after insert, after update) {
         return;
     }
 
-    List<QuoteLineItem> lineItems = [
-        SELECT Id, Product2.Name, Product2.vlocity_cmt__SpecificationType__c, vlocity_cmt__AttributeSelectedValues__c, 
+        List<QuoteLineItem> lineItems = [
+        SELECT Id, Product2.Name,Product2.ProductCode,Product2.vlocity_cmt__SpecificationType__c, vlocity_cmt__AttributeSelectedValues__c, 
                Product2.dtmSistemaContratacionActual__c, dtmSKUContratacion__c, dtmSKURenta__c, 
                QuoteId, Product2.StockKeepingUnit, Product2.dtmProductSkuContratacion__c,Quote.dtmAttributeLineItem__c 
         FROM QuoteLineItem 
-        WHERE Id IN :quoteLineItemIdToUpdate
-    ];
+        WHERE Id IN :quoteLineItemIdToUpdate];
+
+        String quoteIds= '';  
+        for(QuoteLineItem items1 : lineItems){
+                quoteIds = items1.QuoteId;
+        }
+
+        List<QuoteLineItem> produPadre =[SELECT id,Product2.ProductCode,Quote.dtmAttributeLineItem__c,Product2.vlocity_cmt__SpecificationType__c FROM QuoteLineItem WHERE QuoteId=:quoteIds];
+        
+    String plazoSeleccionado= '';
+    String productCodePadre = '';  
+    for(QuoteLineItem items2 : produPadre){
+        if(items2.Product2.vlocity_cmt__SpecificationType__c == 'Offer'){
+            plazoSeleccionado = items2.Quote.dtmAttributeLineItem__c;
+            productCodePadre = items2.Product2.ProductCode;
+        }
+    }
 
     List<QuoteLineItem> lineItemsToUpdate = new List<QuoteLineItem>();
 
     for (QuoteLineItem item : lineItems) {
-        System.debug('Procesando QuoteLineItem: ' + item.Id);
-
         if (item.Product2.vlocity_cmt__SpecificationType__c != 'Offer') {
             String skuContracionNuevo = '';
             String skuRentaNuevo = '';
 
             if (item.Product2.dtmSistemaContratacionActual__c == 'GIS') {
-                System.debug('Entrando en GIS para: ' + item.Product2.Name);
-
-                switch on item.Product2.Name {
-                    when 'Conectividad ICREA V' {
+                switch on item.Product2.ProductCode {
+                    when 'CONECTIVIDAD_ICREAIII' {
                         Map<String, Object> parsedValue = (Map<String, Object>) JSON.deserializeUntyped(item.vlocity_cmt__AttributeSelectedValues__c);
-                        String attCendatTipo = (String) parsedValue.get('ATT_CENDAT_TIPO');
-                        System.debug('attCendatTipo: ' + attCendatTipo);
+                        String attCendatTipo = (String) parsedValue.get('ATT_CDATOS_TIPO_CONECTIVIDAD_ICREAIII');
                         if (attCendatTipo != null) {
                             String[] partes = attCendatTipo.split(' ');
                             String velocidadIcreaV = partes[partes.size() - 1];
-                            skuRentaNuevo = item.Product2.StockKeepingUnit + velocidadIcreaV;
+                            if(velocidadIcreaV!='1000'){
+                                skuRentaNuevo = item.Product2.StockKeepingUnit + velocidadIcreaV+'M-R';
+                            }else{
+                                skuRentaNuevo = item.Product2.StockKeepingUnit +'1G-R';
+                            }  
                         }
                     }
-                    when 'Conectividad ICREA III' {
+                    when 'CONECTIVIDAD_ICREAV' {
                         Map<String, Object> parsedValue = (Map<String, Object>) JSON.deserializeUntyped(item.vlocity_cmt__AttributeSelectedValues__c);
-                        String attCdatosTipoConectividad = (String) parsedValue.get('ATT_CDATOS_TIPO_CONECTIVIDAD_ICREAIII');
-                        System.debug('attCdatosTipoConectividad: ' + attCdatosTipoConectividad);
+                        String attCdatosTipoConectividad = (String) parsedValue.get('ATT_CENDAT_TIPO');
                         if (attCdatosTipoConectividad != null) {
                             String[] partes = attCdatosTipoConectividad.split(' ');
                             String velocidadIcrea3 = partes[partes.size() - 1];
-                            skuRentaNuevo = item.Product2.StockKeepingUnit + velocidadIcrea3;
-                        }
-                    }
-                    when 'Co-Ubicación (Triara) ICREA III', 'Co-Ubicación (Triara) ICREA V' {
-                        System.debug('Entrando a Co-ubicación');
-                        Map<String, Object> parsedValue = (Map<String, Object>) JSON.deserializeUntyped(item.vlocity_cmt__AttributeSelectedValues__c);
-                        String velocidadIcrea3 = (String) parsedValue.get('ATT_CENDAT_TIPORACK');
-                        System.debug('velocidadIcrea3: ' + velocidadIcrea3);
-                        if (velocidadIcrea3 != null) {
-                            switch on velocidadIcrea3 {
-                                when 'Rack 1/8 de 72\'' {
-                                    skuRentaNuevo = item.Product2.StockKeepingUnit + '18RA-R';
-                                }
-                                when 'Rack 1/4 de 72\'' {
-                                    skuRentaNuevo = item.Product2.StockKeepingUnit + '14RA-R';
-                                }
-                                when 'Rack 1/2 de 72\'' {
-                                    skuRentaNuevo = item.Product2.StockKeepingUnit + '12RA-R';
-                                }
-                                when 'Rack 1 de 72\'' {
-                                    skuRentaNuevo = item.Product2.StockKeepingUnit + '1RA-R';
-                                }
+                            if(velocidadIcrea3!='1000'){
+                                skuRentaNuevo = item.Product2.StockKeepingUnit + velocidadIcrea3+'M-R';
+                            }else{
+                                skuRentaNuevo = item.Product2.StockKeepingUnit +'1G-R';
                             }
                         }
                     }
-                    when 'Licencia Analiticos', 'Licencia Analiticos y Mercadotecnia', 'Licencia Presencia y Localización' {
-                        Map<String, Object> parsedValue = (Map<String, Object>) JSON.deserializeUntyped(item.vlocity_cmt__AttributeSelectedValues__c);
-                        String plazo = (String) parsedValue.get('ATT_WIFIANALITICO_PLAZO');
-                        String[] partes = plazo.split(' ');
-                        Integer plazofinal = Integer.valueOf(partes[0]);
-                        System.debug('plazo: ' + plazofinal);
+                    when 'LIC_ANALITICOS', 'LIC_ANALITICOS_MERCADOTECNIA', 'LIC_ANALITICOS_LOCALIZACION' {
+                        String[] partes = plazoSeleccionado.split(' ');
+                        String plazofinal = String.valueOf(partes[0]);
                         if (plazofinal != null) {
                             skuContracionNuevo = item.Product2.dtmProductSkuContratacion__c + plazofinal + 'M';
                             skuRentaNuevo = item.Product2.StockKeepingUnit + plazofinal + 'M';
                         }
                     }
-                    when 'Access Point Huawei 5760', 'Access Point Huawei 5761', 'Access Point Huawei 5761R', 'Access Point Huawei 6760R' {
-                        Map<String, Object> parsedValue = (Map<String, Object>) JSON.deserializeUntyped(item.vlocity_cmt__AttributeSelectedValues__c);
-                        String plazo = (String) parsedValue.get('ATT_PLAZO');
-                        System.debug('plazo: ' + plazo);
-                        if (plazo != null) {
-                            skuContracionNuevo = item.Product2.dtmProductSkuContratacion__c + plazo;
-                            skuRentaNuevo = item.Product2.StockKeepingUnit + plazo;
+                    when 'APH5760CP', 'APH5761CP', 'APH5761R11CP', 'APH6760R51ECP' {
+                        String[] partes = plazoSeleccionado.split(' ');
+                        String plazofinal = String.valueOf(partes[0]);
+                        if (plazofinal != null) {
+                            skuContracionNuevo = item.Product2.dtmProductSkuContratacion__c + plazofinal;
+                            skuRentaNuevo = item.Product2.StockKeepingUnit + plazofinal;
                         }
                     }
-                    when 'Controladora Central Aruba 9004', 'Controladora Central Aruba 7010', 'Access Point Aruba 303H Casa - Sucursal', 'Access Point Aruba 505 Sucursal' {
-                        Map<String, Object> parsedValue = (Map<String, Object>) JSON.deserializeUntyped(item.vlocity_cmt__AttributeSelectedValues__c);
-                        String plazo = (String) parsedValue.get('ATT_WIFIOBJECT_PLAZO');
-                        System.debug('plazo: ' + plazo);
-                        if (plazo != null) {
-                            skuContracionNuevo = item.Product2.dtmProductSkuContratacion__c + plazo;
-                            skuRentaNuevo = item.Product2.StockKeepingUnit + plazo;
+                    when 'CCAruba9004', 'CCAruba7010', 'APAruba303HCS', 'APAruba505S' {
+                        String[] partes = plazoSeleccionado.split(' ');
+                        String plazofinal = String.valueOf(partes[0]);
+                        if (plazofinal != null) {
+                            skuContracionNuevo = item.Product2.dtmProductSkuContratacion__c + plazofinal;
+                            skuRentaNuevo = item.Product2.StockKeepingUnit + plazofinal;
                         }
                     }
-                    when 'MX67 CON SEGURIDAD AVANZADA', 'MX68 CON SEGURIDAD AVANZADA (Sucursal)', 'MX95 CON SEGURIDAD AVANZADA (Sucursal)' {
-                        Map<String, Object> parsedValue = (Map<String, Object>) JSON.deserializeUntyped(item.vlocity_cmt__AttributeSelectedValues__c);
-                        String plazo = (String) parsedValue.get('ATT_PLZ_12M_24M_36M');
-                        String[] partes = plazo.split(' ');
-                        Integer plazofinal = Integer.valueOf(partes[0]);
-                        System.debug('plazo: ' + plazofinal);
+                    when 'SDWANX67 Meraki', 'SDWANX68 Meraki', 'SDWANX95 Meraki' {
+                        String[] partes = plazoSeleccionado.split(' ');
+                        String plazofinal = String.valueOf(partes[0]);
                         if (plazofinal != null) {
                             skuContracionNuevo = item.Product2.dtmProductSkuContratacion__c + plazofinal;
                             skuRentaNuevo = item.Product2.StockKeepingUnit + plazofinal;
@@ -136,11 +121,10 @@ trigger dtmAjustesSkuQli on QuoteLineItem (after insert, after update) {
             } else if (item.Product2.dtmSistemaContratacionActual__c == 'ODIN') {
                 System.debug('Entrando en ODIN para: ' + item.Product2.Name);
 
-                switch on item.Product2.Name {
-                    when 'Gestión de sistema operativo' {
+                switch on item.Product2.ProductCode {
+                    when 'PR_GESTION_OS' {
                         Map<String, Object> parsedValue = (Map<String, Object>) JSON.deserializeUntyped(item.vlocity_cmt__AttributeSelectedValues__c);
                         String sistemaOperativo = (String) parsedValue.get('ATT_SERVSEG_TIPOSO');
-                        System.debug('sistemaOperativo: ' + sistemaOperativo);
                         if (sistemaOperativo != null) {
                             switch on sistemaOperativo{
                             when 'Windows'{
@@ -152,6 +136,19 @@ trigger dtmAjustesSkuQli on QuoteLineItem (after insert, after update) {
                         }
                         }
                     }
+                    when 'DOMINIO'{
+                        if(productCodePadre=='CORREO_NEGOCIO'){
+                            skuRentaNuevo = 'TRHPL';
+                        }else{
+                            skuRentaNuevo = 'TRT1P';
+                        }   
+                    }
+                    when 'ADM TIMBRES','Timbres Nomina'{
+                        skuContracionNuevo = item.Product2.dtmProductSkuContratacion__c;
+                    }
+                    when 'NOI ASISTENTE'{
+                        skuRentaNuevo = item.Product2.dtmProductSkuContratacion__c;
+                    }
                     when else {
                         skuContracionNuevo = item.Product2.dtmProductSkuContratacion__c;
                         skuRentaNuevo = item.Product2.StockKeepingUnit;
@@ -162,12 +159,9 @@ trigger dtmAjustesSkuQli on QuoteLineItem (after insert, after update) {
             item.dtmSKUContratacion__c = skuContracionNuevo;
             item.dtmSKURenta__c = skuRentaNuevo;
             lineItemsToUpdate.add(item);
-
-            System.debug('Actualizando QuoteLineItem: ' + item.Id + ' con SKUContratacion: ' + skuContracionNuevo + ' y SKURenta: ' + skuRentaNuevo);
         }
     }
     if (!lineItemsToUpdate.isEmpty()) {
-        System.debug('Registros a actualizar: ' + lineItemsToUpdate);
         update lineItemsToUpdate;
     }
 }

@@ -18,17 +18,19 @@ global class dtmListadoProductosOdin {
     global static dtmListadoProductosOdinResponse procesarSolicitud(String entradaDatos) {
         String idQuote = entradaDatos;
 
+        Quote cotizacion = [SELECT Id,dtmCuentaPartnerId__c FROM Quote WHERE Id=:idQuote];
+        Account cuentaPartner = [SELECT id,Name,dtmIdCuentaODIN__c,dtmIdResellerOdin__c FROM Account WHERE id=:cotizacion.dtmCuentaPartnerId__c];
         QuoteLineItem produPadre = [SELECT id,dtmRFC__c,Product2.Id,Product2.ProductCode,Product2.Name,Product2.vlocity_cmt__SpecificationType__c,Product2.dtmLegacyName__c FROM QuoteLineItem WHERE QuoteId=:idQuote AND Product2.vlocity_cmt__SpecificationType__c='Offer'];
 
         String jsonRequest ='{';
         jsonRequest += '"listaParametros": [';
         jsonRequest += '{';
         jsonRequest +='"parametro":"resellerId",';
-        jsonRequest +='"valor":"1016365"';
+        jsonRequest +='"valor":"'+String.valueOf(cuentaPartner.dtmIdResellerOdin__c)+'"';
         jsonRequest += '},';
         jsonRequest += '{';
         jsonRequest +='"parametro":"accountId",';
-        jsonRequest +='"valor":"1016367"';
+        jsonRequest +='"valor":"'+String.valueOf(cuentaPartner.dtmIdCuentaODIN__c)+'"';
         jsonRequest += '},';
         jsonRequest += '{';
         jsonRequest +='"parametro":"cveProducto",';

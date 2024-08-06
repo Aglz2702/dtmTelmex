@@ -35,7 +35,7 @@ global class dtmInterfazOrquestador implements vlocity_cmt.VlocityOpenInterface{
                 resultadoMap.putAll(resultado.toMap());
             }
             when 'altaDeResellerOdin'{
-                dtmAltaDeReseller.dtmAltaDeResellerResponse resultado = dtmAltaDeReseller.procesarSolicitud(accountId);
+                dtmAltaDeReseller.dtmAltaDeResellerResponse resultado = dtmAltaDeReseller.procesarSolicitud(input);
                 System.debug('Se obtuvo el resultado de la integración: ' + resultado);
                 resultadoMap.putAll(resultado.toMap());
             }

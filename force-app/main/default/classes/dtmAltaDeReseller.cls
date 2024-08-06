@@ -36,28 +36,33 @@ global class dtmAltaDeReseller {
         }
     }
     
-    global static dtmAltaDeResellerResponse procesarSolicitud(String entradaDatos) {
-        String idContacto = entradaDatos;
-        String user = 'test';
-        String pass = 'test';
+    global static dtmAltaDeResellerResponse procesarSolicitud(Map<String, Object>  entradaDatos) {
+        String accountId = (String) entradaDatos.get('accountId');
+        System.debug(accountId);
+        String usuario = (String) entradaDatos.get('usuario');
+        System.debug(usuario);
+        String pass = (String) entradaDatos.get('password');
+        System.debug(pass);
         Integer idSistema = 1;
         
-        Contact cuenta = [SELECT FirstName,MiddleName,LastName,HomePhone,dtmTelefonoTrabajo__c,Email,Account.Name,dtmUsuario__c,dtmContrasena__c,dtmResellerId__c FROM Contact WHERE id=:idContacto];
-        
+        //Contact cuenta = [SELECT FirstName,MiddleName,LastName,HomePhone,dtmTelefonoTrabajo__c,Email,Account.Name,dtmUsuario__c,dtmContrasena__c,dtmResellerId__c FROM Contact WHERE id=:accountId];
+        //String jsonRequest='{"test":"test"}';
+    	Account cuenta = [SELECT id,Name,dtmTelefonoFacturacion__c,dtmEmailCorporativo__c,dtmTelefonoFijo__c,dtmIdResellerOdin__c FROM Account WHERE Id=:accountId];
+        Contact contactoDatos = [SELECT FirstName,MiddleName,LastName,Suffix FROM Contact WHERE AccountId=:accountId AND dtmPrimaryContact__c=true];
+
         String jsonRequest = '{';
         jsonRequest +='"idSistema":"'+idSistema+'",';
-        jsonRequest +='"telefono":"'+cuenta.HomePhone+'",';
-        jsonRequest +='"usuario":"'+cuenta.dtmUsuario__c+'",';
-        jsonRequest +='"password":"'+cuenta.dtmContrasena__c+'",';
-        jsonRequest +='"nombreEmpresa":"'+cuenta.Account.Name+'",';
-        jsonRequest +='"nombre":"'+cuenta.FirstName+' '+cuenta.MiddleName+'",';
-        jsonRequest +='"apPaterno":"'+cuenta.MiddleName+'",';
-        jsonRequest +='"apMaterno":"'+cuenta.LastName+'",';
-        jsonRequest +='"correo":"'+cuenta.Email+'",';
-        jsonRequest +='"telContacto":"'+cuenta.dtmTelefonoTrabajo__c+'"';
+        jsonRequest +='"telefono":"'+cuenta.dtmTelefonoFacturacion__c+'",';
+        jsonRequest +='"usuario":"'+usuario+'",';
+        jsonRequest +='"password":"'+pass+'",';
+        jsonRequest +='"nombreEmpresa":"'+cuenta.Name+'",';
+        jsonRequest +='"nombre":"'+contactoDatos.FirstName+' '+contactoDatos.MiddleName+'",';
+        jsonRequest +='"apPaterno":"'+contactoDatos.LastName+'",';
+        jsonRequest +='"apMaterno":"'+contactoDatos.Suffix+'",';
+        jsonRequest +='"correo":"'+cuenta.dtmEmailCorporativo__c+'",';
+        jsonRequest +='"telContacto":"'+cuenta.dtmTelefonoFijo__c+'"';
         jsonRequest +='}';
-
-    	System.debug('El request a enviar es:'+jsonRequest);
+        System.debug('El request a enviar es:'+jsonRequest);
     	dtmAltaDeReseller.dtmAltaDeResellerResponse respuesta = new dtmAltaDeReseller.dtmAltaDeResellerResponse();
         dtmAltaDeReseller.dtmAltaDeResellerResponse responses = dtmAltaDeResellerController.integrarConEndpointExterno(jsonRequest);
     	
@@ -67,10 +72,10 @@ global class dtmAltaDeReseller {
             respuesta.mensajeRespuesta = responses.mensajeRespuesta;
             respuesta.resellerId = responses.resellerId;
             respuesta.folioId = responses.folioId;
-            cuenta.dtmResellerId__c = responses.resellerId;
+            cuenta.dtmIdResellerOdin__c = responses.resellerId;
             update cuenta;
         } else{
-            respuesta.statusCode = responses.statusCode;
+            respuesta.statusCode = 400;
             respuesta.codigoRespuesta = responses.codigoRespuesta;
             respuesta.mensajeRespuesta = responses.mensajeRespuesta;
             respuesta.errores = responses.errores;

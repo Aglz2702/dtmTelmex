@@ -1,0 +1,11 @@
+<apex:page applyBodyTag="false" lightningStylesheets="true" docType="html-5.0">
+
+<h1>test</h1>
+
+<apex:slds/>
+<apex:form styleClass="">
+
+</apex:form>
+
+
+</apex:page>

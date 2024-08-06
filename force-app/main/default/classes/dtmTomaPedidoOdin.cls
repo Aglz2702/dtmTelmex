@@ -44,7 +44,8 @@ global class dtmTomaPedidoOdin {
         String producto = '';
         QuoteLineItem produAgrupador = new QuoteLineItem();
         
-        Quote cotizacion = [SELECT Id,Name,Account.Id,Account.dtmRFC__c,Account.dtmCUCE__c,Opportunity.dtmIdentificadorOpp__c,Opportunity.dtmCUP__c FROM Quote WHERE Id=:idQuote];
+        Quote cotizacion = [SELECT Id,Name,dtmCuentaPartnerId__c,Account.Id,Account.dtmRFC__c,Account.dtmCUCE__c,Opportunity.dtmIdentificadorOpp__c,Opportunity.dtmCUP__c FROM Quote WHERE Id=:idQuote];
+        Account cuentaPartner = [SELECT id,Name,dtmIdCuentaODIN__c,dtmIdResellerOdin__c FROM Account WHERE id=:cotizacion.dtmCuentaPartnerId__c];
         System.debug('cotizacion '+cotizacion);
         QuoteLineItem produPadre = [SELECT id,dtmRFC__c,dtmCorreo__c,Product2.Id,Product2.ProductCode,Product2.Name,Product2.vlocity_cmt__SpecificationType__c,Product2.dtmLegacyName__c,vlocity_cmt__AttributeSelectedValues__c FROM QuoteLineItem WHERE QuoteId=:idQuote AND Product2.vlocity_cmt__SpecificationType__c='Offer'];
         System.debug('produPadre '+produPadre);
@@ -52,10 +53,8 @@ global class dtmTomaPedidoOdin {
         System.debug('productosHijos '+productosHijos);
         
         String jsonRequest = '{';
-        //jsonRequest +='"resellerId":"'+cotizacion.Id+'",';//Datos de reseller
-        //jsonRequest +='"accountId":"'+cotizacion.Account.Id+'",';//Datos de alta de cuenta en reseller
-        jsonRequest +='"resellerId":"1016365",';//Datos de reseller
-        jsonRequest +='"accountId":"1016367",';//Datos de alta de cuenta en reseller
+        jsonRequest +='"resellerId":"'+String.valueOf(cuentaPartner.dtmIdResellerOdin__c)+'",';//Datos de reseller
+        jsonRequest +='"accountId":"'+String.valueOf(cuentaPartner.dtmIdCuentaODIN__c)+'",';//Datos de alta de cuenta en reseller
         jsonRequest +='"folioGoTelmex":"'+cotizacion.Id+'",';
         jsonRequest +='"codigoPromocion":null,';//Checar con marco
         jsonRequest +='"contratacionCloud":[';

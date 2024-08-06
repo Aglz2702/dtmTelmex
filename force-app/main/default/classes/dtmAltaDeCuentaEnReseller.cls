@@ -37,38 +37,57 @@ global class dtmAltaDeCuentaEnReseller {
     
     global static dtmAltaDeCuentaEnResellerResponse procesarSolicitud(String entradaDatos) {
         String idAccount = entradaDatos;
-        String cveEstado = 'MX';
         
-        /*Account cuenta = [SELECT id,Name,Phone,dtmTelefonoFijo__c,FirstName,MiddleName,LastName,Suffix,dtmCiudad__c,dtmPartnerId__c,dtmCuentaMaestra__c,dtmEmailCorporativo__c,dtmCodigoPostal__c,ShippingAddress FROM Account WHERE id=:idAccount];
-        
+        Account cuenta = [SELECT id,dtmIdResellerOdin__c,dtmIdCuentaODIN__c,dtmSubCuentaMaestra__c,Name,dtmDireccionCompletaFiscal__c,dtmTelefonoFijo__c,dtmEmailCorporativo__c,dtmDireccionFiscal__PostalCode__s,dtmDireccionFiscal__City__s,dtmDireccionFiscal__StateCode__s FROM Account WHERE id=:idAccount];
+        System.debug('cuenta '+cuenta);
+        Contact contactoDatos = [SELECT FirstName,MiddleName,LastName,Suffix FROM Contact WHERE AccountId=:idAccount AND dtmPrimaryContact__c=true];
+        System.debug('contactoDatos '+contactoDatos);
         String jsonRequest = '{';
-        jsonRequest +='"resellerId":"'+cuenta.dtmPartnerId__c+'",';
-        jsonRequest +='"subCtaMaestra":"'+cuenta.dtmCuentaMaestra__c+'",';
+        jsonRequest +='"resellerId":"'+cuenta.dtmIdResellerOdin__c+'",';
+        jsonRequest +='"subCtaMaestra":"'+cuenta.dtmSubCuentaMaestra__c+'",';
         jsonRequest +='"nombreEmpresa":"'+cuenta.Name+'",';
-        jsonRequest +='"nombre":"'+cuenta.FirstName+' '+cuenta.MiddleName+'",';
-        jsonRequest +='"apPaterno":"'+cuenta.MiddleName+'",';
-        jsonRequest +='"apMaterno":"'+cuenta.LastName+'",';
+        jsonRequest +='"nombre":"'+contactoDatos.FirstName+' '+contactoDatos.MiddleName+'",';
+        jsonRequest +='"apPaterno":"'+contactoDatos.LastName+'",';
+        jsonRequest +='"apMaterno":"'+contactoDatos.Suffix+'",';
         jsonRequest +='"correo":"'+cuenta.dtmEmailCorporativo__c+'",';
         jsonRequest +='"telContacto":"'+cuenta.dtmTelefonoFijo__c+'",';
-        jsonRequest +='"codigoPostal":"'+cuenta.dtmCodigoPostal__c+'",';
-        jsonRequest +='"direccion":"'+cuenta.ShippingAddress+'",';
-        jsonRequest +='"cveEstado":"'+cveEstado+'",';
-        jsonRequest +='"localidad":"'+cuenta.dtmCiudad__c+'"';
-        jsonRequest +='}';*/
+        jsonRequest +='"codigoPostal":"'+cuenta.dtmDireccionFiscal__PostalCode__s+'",';
+        jsonRequest +='"direccion":"'+cuenta.dtmDireccionCompletaFiscal__c+'",';
+        Switch on cuenta.dtmDireccionFiscal__StateCode__s{
+            when 'ME'{
+                jsonRequest +='"cveEstado":"MX",';
+            }
+            when 'PB'{
+                jsonRequest +='"cveEstado":"PU",';
+            }
+            when 'QE'{
+                jsonRequest +='"cveEstado":"QT",';
+            }
+            when 'CH'{
+                jsonRequest +='"cveEstado":"CP",';
+            }
+            when else{
+                jsonRequest +='"cveEstado":"'+cuenta.dtmDireccionFiscal__StateCode__s+'",';
+            }
+        }
+        jsonRequest +='"localidad":"'+cuenta.dtmDireccionFiscal__City__s+'"';
+        jsonRequest +='}';
     
-        String jsonRequest = '{"test":"test"}';
+        System.debug('El request a enviar es:'+jsonRequest);
     	dtmAltaDeCuentaEnReseller.dtmAltaDeCuentaEnResellerResponse respuesta = new dtmAltaDeCuentaEnReseller.dtmAltaDeCuentaEnResellerResponse();
         dtmAltaDeCuentaEnReseller.dtmAltaDeCuentaEnResellerResponse responses = dtmAltaDeCuentaEnResellerController.integrarConEndpointExterno(jsonRequest);
     	
-    	if (responses.statusCode==200) {
+    	if (responses.statusCode==200 && responses.codigoRespuesta=='00') {
             respuesta.statusCode = responses.statusCode;
             respuesta.codigoRespuesta = responses.codigoRespuesta;
             respuesta.mensajeRespuesta = responses.mensajeRespuesta;
             respuesta.accountId = responses.accountId;
             respuesta.folioId = responses.folioId;
             respuesta.statusCode = responses.statusCode;
+            cuenta.dtmIdCuentaODIN__c = responses.accountId;
+            update cuenta;
         } else{
-            respuesta.statusCode = responses.statusCode;
+            respuesta.statusCode = 400;
             respuesta.codigoRespuesta = responses.codigoRespuesta;
             respuesta.mensajeRespuesta = responses.mensajeRespuesta;
             respuesta.errores = responses.errores;

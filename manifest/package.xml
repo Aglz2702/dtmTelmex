@@ -16,7 +16,8 @@
 		<members>dtmContratacionNmp</members>
 		<members>dtmContratacionNmpController</members>
 		<members>dtmContratacionNmpTest</members>
-		<members>dtmFormatoPrecios</members>
+		<members>dtmDatosAltaResellerController</members>
+		<members>dtmDatosResellerController</members>
 		<members>dtmInterfazOrquestador</members>
 		<members>dtmInterfazOrquestadorTest</members>
 		<members>dtmListadoProductosOdin</members>
@@ -38,7 +39,6 @@
 		<members>dtmRecibirContratacionOdinWrapper</members>
 		<members>dtmRecibirContratacionOdinWrapperRequest</members>
 		<members>dtmRecibirContratacionOdinWrapperTest</members>
-		<members>dtmSpinnerVFP</members>
 		<members>dtmTomaPedidoOdin</members>
 		<members>dtmTomaPedidoOdinController</members>
 		<members>dtmTomaPedidoOdinTest</members>
@@ -48,6 +48,11 @@
 		<members>dtmValidaDominioController</members>
 		<members>dtmValidaDominioTest</members>
 		<name>ApexClass</name>
+	</types>
+	<types>
+		<members>dtmDatosAltaReseller</members>
+		<members>dtmDatosReseller</members>
+		<name>ApexPage</name>
 	</types>
 	<version>60.0</version>
 </Package>

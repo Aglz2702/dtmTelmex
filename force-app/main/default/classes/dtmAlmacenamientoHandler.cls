@@ -24,7 +24,7 @@ public class dtmAlmacenamientoHandler {
         String descripcion = (String) datos.get('descripcion');
         switch on descripcion{
             when 'Transferencia (GB)' {
-                if (valorGb != null) {
+                if (valorGb != null && valorGb>5) {
                     Integer valorGB2=valorGB-5;
                     if (valorGB2 <= 10235) {
                         actualizar5A10TB(qli, qliToUpdate, valorGB2);
