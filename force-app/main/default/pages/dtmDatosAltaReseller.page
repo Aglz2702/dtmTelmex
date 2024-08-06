@@ -1,9 +1,11 @@
-<apex:page standardController="Account" extensions="dtmDatosResellerController" showHeader="true">
+<apex:page standardController="Account" extensions="dtmDatosAltaResellerController" showHeader="true">
     <apex:form id="confirmationForm">
         <apex:pageMessages />
         <apex:pageBlock title="Confirmación de Datos">
             <apex:pageBlockSection >
-                <apex:outputField value="{!Account.dtmTelefonoFacturacion__c}" label="Telefono"/>
+                <apex:outputField value="{!Account.dtmIdResellerOdin__c}" label="ResellerId"/>
+                <apex:outputText value="<br/>" escape="false"/>
+                <apex:outputField value="{!Account.dtmSubCuentaMaestra__c}" label="SubCuenta maestra"/>
                 <apex:outputText value="<br/>" escape="false"/>
                 <apex:outputField value="{!Account.Name}" label="Nombre Empresa"/>
                 <apex:outputText value="<br/>" escape="false"/>
@@ -17,14 +19,18 @@
                 <apex:outputText value="<br/>" escape="false"/>
                 <apex:outputField value="{!Account.dtmTelefonoFijo__c}" label="TelContacto"/>
                 <apex:outputText value="<br/>" escape="false"/>
-            </apex:pageBlockSection>
-            <apex:pageBlockSection title="Credenciales">
-                <apex:inputText value="{!usuario}" label="*Usuario" required="true"/>
-                <apex:inputSecret value="{!password}" label="*Password" required="true"/>
+                <apex:outputField value="{!Account.dtmDireccionFiscal__PostalCode__s}" label="Codigo Postal"/>
+                <apex:outputText value="<br/>" escape="false"/>
+                <apex:outputField value="{!Account.dtmDireccionCompletaFiscal__c}" label="Direccion"/>
+                <apex:outputText value="<br/>" escape="false"/>
+                <apex:outputField value="{!Account.dtmDireccionFiscal__StateCode__s}" label="Estado"/>
+                <apex:outputText value="<br/>" escape="false"/>
+                <apex:outputField value="{!Account.dtmDireccionFiscal__City__s}" label="Localidad"/>
+                <apex:outputText value="<br/>" escape="false"/>
             </apex:pageBlockSection>
         
         <apex:commandButton action="{!goToAccount}" value="Regresar a cuenta" styleClass="largeButton"/>
-        <apex:commandButton value="Crear Reseller" action="{!enviarDatos}" styleClass="largeButton" onclick="showSpinner()"/>
+        <apex:commandButton value="Crear Alta de cuenta en Reseller" action="{!enviarDatos}" styleClass="largeButton" onclick="showSpinner()"/>
         
         <apex:pageBlockSection title="Respuesta de proveedor obtenida">
             <apex:outputText value="{!mensajeRespuesta}" style="font-weight: bold; color: black; font-size: 14px;"/>
@@ -46,8 +52,8 @@
             padding: 10px 20px;
         }
         .largeSpinner {
-            width: 80px;
-            height: 80px;
+            width: 100px;
+            height: 100px;
         }
     </style>
 </apex:page>
