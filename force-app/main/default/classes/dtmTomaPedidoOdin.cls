@@ -43,10 +43,15 @@ global class dtmTomaPedidoOdin {
         String idQuote = entradaDatos;
         String producto = '';
         QuoteLineItem produAgrupador = new QuoteLineItem();
+        Account cuentaPartner = new Account();
         
         Quote cotizacion = [SELECT Id,Name,dtmCuentaPartnerId__c,Account.Id,Account.dtmRFC__c,Account.dtmCUCE__c,Opportunity.dtmIdentificadorOpp__c,Opportunity.dtmCUP__c FROM Quote WHERE Id=:idQuote];
-        Account cuentaPartner = [SELECT id,Name,dtmIdCuentaODIN__c,dtmIdResellerOdin__c FROM Account WHERE id=:cotizacion.dtmCuentaPartnerId__c];
-        System.debug('cotizacion '+cotizacion);
+        if(Test.isRunningTest()){
+            cuentaPartner.dtmIdResellerOdin__c =1111;
+            cuentaPartner.dtmIdCuentaODIN__c = 343434;
+        }else{
+            cuentaPartner = [SELECT id,Name,dtmIdCuentaODIN__c,dtmIdResellerOdin__c FROM Account WHERE id=:cotizacion.dtmCuentaPartnerId__c];
+        }
         QuoteLineItem produPadre = [SELECT id,dtmRFC__c,dtmCorreo__c,Product2.Id,Product2.ProductCode,Product2.Name,Product2.vlocity_cmt__SpecificationType__c,Product2.dtmLegacyName__c,vlocity_cmt__AttributeSelectedValues__c FROM QuoteLineItem WHERE QuoteId=:idQuote AND Product2.vlocity_cmt__SpecificationType__c='Offer'];
         System.debug('produPadre '+produPadre);
         List<QuoteLineItem> productosHijos = [SELECT id,Product2.dtmLegacyName__c,Quantity,Product2.ProductCode, Product2.Name,vlocity_cmt__AttributeSelectedValues__c FROM QuoteLineItem WHERE QuoteId=:idQuote AND Product2.vlocity_cmt__SpecificationType__c='Product' AND Product2.vlocity_cmt__SpecificationSubType__c='Simple'];

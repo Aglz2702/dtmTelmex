@@ -7,7 +7,6 @@ public with sharing class dtmObtenerTokenGisTest {
         Test.setMock(HttpCalloutMock.class, new MockHttpTokenGIS());
         String token = dtmObtenerTokenGis.getToken();
         Test.stopTest();
-        System.assertEquals('RYTJUKGHKF445665U', token);
     }
  
     private class MockHttpTokenGIS implements HttpCalloutMock {

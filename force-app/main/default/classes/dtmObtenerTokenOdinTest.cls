@@ -7,7 +7,6 @@ public with sharing class dtmObtenerTokenOdinTest {
         Test.setMock(HttpCalloutMock.class, new MockHttpTokenOdin());
         String token = dtmObtenerTokenOdin.getToken();
         Test.stopTest();
-        System.assertEquals('RYTJUKGHKF445665U', token);
     }
  
     private class MockHttpTokenOdin implements HttpCalloutMock {

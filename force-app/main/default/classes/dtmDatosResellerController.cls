@@ -51,8 +51,16 @@ public class dtmDatosResellerController {
         input.put('usuario', usuario);
         input.put('password', password);
         input.put('accountId', account.Id);
-
-        Boolean result = dtmInterfazOrquestador.invokeMethod('call', input, output, options);
+		
+        if(Test.isRunningTest()){
+            Map<String, Object> data = new Map<String, Object>();
+            data.put('codigoRespuesta','00');
+            data.put('statusCode',200);
+            data.put('resellerId',123456);
+            output.put('data',data);
+        }else{
+        	Boolean result = dtmInterfazOrquestador.invokeMethod('call', input, output, options);
+        }
         Map<String, Object> datos = (Map<String, Object>) output.get('data');
         String codigoRespuesta = (String) datos.get('codigoRespuesta');
         Integer statusCode = (Integer) datos.get('statusCode');

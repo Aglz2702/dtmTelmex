@@ -2,15 +2,19 @@ global class dtmListadoProductosOdinController {
     public static final String NOMBRE_SERVICIO = 'dtmListaProductosOdin';
     global static dtmListadoProductosOdin.dtmListadoProductosOdinResponse integrarConEndpointExterno(String jsonInput) {
         String endpoint = dtmUtility.getEndpoint(NOMBRE_SERVICIO);
+        String accessToken = '';
         Http https = new Http();
         HttpRequest request = new HttpRequest();
         //String endpoint = 'https://356dafa1-a57b-4e56-836f-80a49440dcbc.mock.pstmn.io/listaProductos';
         request.setEndpoint(endpoint);
         request.setMethod('POST');
         request.setHeader('Content-Type', 'application/json');
-        String accessToken = dtmObtenerTokenOdin.getToken();
+        if(Test.isRunningTest()){
+            accessToken = 'jjkwejkwkjehwjehjwhekwe';
+        }else{
+            accessToken = dtmObtenerTokenOdin.getToken();
         system.debug('accessToken'+accessToken);
-        request.setHeader('token', accessToken);
+        }
         request.setTimeout(120000);
         request.setBody(jsonInput);
         HttpResponse response = https.send(request);

@@ -51,12 +51,16 @@ global class dtmAltaDeReseller {
         Contact contactoDatos = [SELECT FirstName,MiddleName,LastName,Suffix FROM Contact WHERE AccountId=:accountId AND dtmPrimaryContact__c=true];
 
         String jsonRequest = '{';
-        jsonRequest +='"idSistema":"'+idSistema+'",';
+        jsonRequest +='"idSistema":'+idSistema+',';
         jsonRequest +='"telefono":"'+cuenta.dtmTelefonoFacturacion__c+'",';
         jsonRequest +='"usuario":"'+usuario+'",';
         jsonRequest +='"password":"'+pass+'",';
         jsonRequest +='"nombreEmpresa":"'+cuenta.Name+'",';
-        jsonRequest +='"nombre":"'+contactoDatos.FirstName+' '+contactoDatos.MiddleName+'",';
+        if(contactoDatos.MiddleName!=null){
+            jsonRequest +='"nombre":"'+contactoDatos.FirstName+' '+contactoDatos.MiddleName+'",';
+        }else{
+            jsonRequest +='"nombre":"'+contactoDatos.FirstName+'",';
+        }
         jsonRequest +='"apPaterno":"'+contactoDatos.LastName+'",';
         jsonRequest +='"apMaterno":"'+contactoDatos.Suffix+'",';
         jsonRequest +='"correo":"'+cuenta.dtmEmailCorporativo__c+'",';

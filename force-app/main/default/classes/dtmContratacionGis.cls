@@ -182,129 +182,173 @@ global class dtmContratacionGis {
                     productoJson += '"direccionamiento": null,';
                 }
                 System.debug('productoJson: '+productoJson);
-                productoJson += '"skus":[';
-                List<String> skusJsonList = new List<String>();
-                for (Integer j = 0; j < productosHijos.size(); j++) { 
-                    QuoteLineItem item2 = productosHijos[j];
-                    if(item2.Product2.vlocity_cmt__SpecificationSubType__c!='Bundle'){
-                        String skuJson = '{';
-                        if (item.Product2.Name == 'Internet Directo Negocio') {
-                            skuJson += '"skuTipo":"' + item2.Product2.dtmLegacyName__c + '",';
-                        } else {
-                            skuJson += '"skuTipo":null,';
-                        }
-                        switch on item.Product2.Name{
-                            when 'Wifi Avanzado','Wifi Corporativo en sucursales / casa'{
-                                Map<String, Object> parsedValue = (Map<String, Object>) JSON.deserializeUntyped(item.vlocity_cmt__AttributeSelectedValues__c);
-                                String valoresPlazo = (String) parsedValue.get('ATT_INT_12M_24M_36M)');
-                                String[] plazos = valoresPlazo.split(' ');
-                                Integer plazo = Integer.valueOf(plazos[0]);
-                                skuJson += '"skuRenta":"' + item2.Product2.StockKeepingUnit + plazo+'",';
-                                skuJson += '"skuContratacion":"' + item2.Product2.dtmProductSkuContratacion__c + plazo+'",';
-                            }
-                            when 'SD WAN Telmex'{
-                                Map<String, Object> parsedValue = (Map<String, Object>) JSON.deserializeUntyped(item.vlocity_cmt__AttributeSelectedValues__c);
-                                String valoresPlazo = (String) parsedValue.get('ATT_PLZ_12M_24M_36M');
-                                String[] plazos = valoresPlazo.split(' ');
-                                Integer plazo = Integer.valueOf(plazos[0]);
-                                skuJson += '"skuRenta":"' + item2.Product2.StockKeepingUnit + plazo+'",';
-                                skuJson += '"skuContratacion":"' + item2.Product2.dtmProductSkuContratacion__c + plazo +'",';
-                            }
-                            when 'Wifi Analítico'{
-                                Map<String, Object> parsedValue = (Map<String, Object>) JSON.deserializeUntyped(item.vlocity_cmt__AttributeSelectedValues__c);
-                                String valoresPlazo = (String) parsedValue.get('ATT_WIFIANALITICO_PLAZO');
-                                String[] plazos = valoresPlazo.split(' ');
-                                Integer plazo = Integer.valueOf(plazos[0]);
-                                skuJson += '"skuRenta":"' + item2.Product2.StockKeepingUnit + plazo+'M'+'",';
-                                skuJson += '"skuContratacion":"' + item2.Product2.dtmProductSkuContratacion__c + plazo+'M'+'",';
-                            }
-                            when else{
-                                skuJson += '"skuRenta":"' + item2.Product2.StockKeepingUnit + '",';
-                                skuJson += '"skuContratacion":"' + item2.Product2.dtmProductSkuContratacion__c + '",';
-                            }
-                        }
-                        System.debug('skuJson '+skuJson);
-                        Decimal redondearRenta = item2.vlocity_cmt__RecurringCharge__c;
-                        Decimal redondearContratacion = item2.vlocity_cmt__OneTimeCharge__c;
-
-                        Decimal redondeadoRenta = redondearRenta.setScale(2);
-                        Decimal redondeadoContratacion = redondearContratacion.setScale(2);
-
-                        skuJson += '"precioRenta":' + redondeadoRenta + ',';
-                        skuJson += '"precioContratacion":' + redondeadoContratacion + ',';
-                        if (item.Product2.Name == 'Internet Directo Negocio') {
-                            skuJson += '"sitio": null,';
-                        }else{
-                            String[] sitioss2 = item2.dtmNombresitio__c.split(' ');
-                            String sitio2 = sitioss2[0];
-                            skuJson += '"sitio": ' + sitio2 + ',';
-                        }
-                        skuJson += '"cantidad":' + Integer.ValueOf(item2.Quantity);
-                        skuJson += '}';
-                        
-                        skusJsonList.add(skuJson);
-                    }
-                    
-                    
-                }
-                if(item.dtmModalidad__c=='Bajo Demanda'){
+                if(item.Product2.Name == 'Internet Directo Negocio'){
+                    System.debug('Entro a IDN armado');
+                    QuoteLineItem productoServicioContratacion = [SELECT id,Product2.dtmLegacyName__c, vlocity_cmt__OneTimeCharge__c, Product2.Id, Product2.vlocity_cmt__SpecificationType__c,Product2.Name, Product2.dtmProductSkuContratacion__c FROM QuoteLineItem WHERE QuoteId=:idQuote AND Product2.vlocity_cmt__SpecificationType__c = 'Product' AND Product2.Name='Servicio Contratación'];
+                    QuoteLineItem productoServicioRenta = [SELECT id,Product2.dtmLegacyName__c, vlocity_cmt__RecurringCharge__c , Product2.Id, Product2.vlocity_cmt__SpecificationType__c,Product2.Name, Product2.StockKeepingUnit FROM QuoteLineItem WHERE QuoteId=:idQuote AND Product2.vlocity_cmt__SpecificationType__c = 'Product' AND Product2.Name='Servicio Renta'];
+                    QuoteLineItem productoEquipoContratacion = [SELECT id,Product2.dtmLegacyName__c, vlocity_cmt__OneTimeCharge__c, Product2.Id, Product2.vlocity_cmt__SpecificationType__c,Product2.Name, Product2.dtmProductSkuContratacion__c FROM QuoteLineItem WHERE QuoteId=:idQuote AND Product2.vlocity_cmt__SpecificationType__c = 'Product' AND Product2.Name='Equipo Contratación' ];
+                    QuoteLineItem productoEquipoRenta = [SELECT id,Product2.dtmLegacyName__c, vlocity_cmt__RecurringCharge__c , Product2.Id, Product2.vlocity_cmt__SpecificationType__c,Product2.Name, Product2.StockKeepingUnit FROM QuoteLineItem WHERE QuoteId=:idQuote AND Product2.vlocity_cmt__SpecificationType__c = 'Product' AND Product2.Name='Equipo Renta'];
+                    QuoteLineItem productoPexaContratacion = [SELECT id,Product2.dtmLegacyName__c, vlocity_cmt__OneTimeCharge__c, Product2.Id, Product2.vlocity_cmt__SpecificationType__c,Product2.Name, Product2.dtmProductSkuContratacion__c FROM QuoteLineItem WHERE QuoteId=:idQuote AND Product2.vlocity_cmt__SpecificationType__c = 'Product' AND Product2.Name='PEXA Contratación' ];
+                    QuoteLineItem productoPexaRenta = [SELECT id,Product2.dtmLegacyName__c, vlocity_cmt__RecurringCharge__c , Product2.Id, Product2.vlocity_cmt__SpecificationType__c,Product2.Name, Product2.StockKeepingUnit FROM QuoteLineItem WHERE QuoteId=:idQuote AND Product2.vlocity_cmt__SpecificationType__c = 'Product' AND Product2.Name='PEXA Renta'];
+                    List<String> skusJsonList = new List<String>();
+                    productoJson += '"skus":[';
+                    String skuJson = '{';
+                    skuJson += '"skuTipo":"SERVICIO",';
+                    skuJson += '"skuRenta":"' + productoServicioRenta.Product2.StockKeepingUnit+'",';
+                    skuJson += '"skuContratacion":"' + productoServicioContratacion.Product2.dtmProductSkuContratacion__c+'",';
+                    Decimal redondearRenta = productoServicioRenta.vlocity_cmt__RecurringCharge__c;
+                    Decimal redondearContratacion = productoServicioContratacion.vlocity_cmt__OneTimeCharge__c;
+                    Decimal redondeadoRenta = redondearRenta.setScale(2);
+                    Decimal redondeadoContratacion = redondearContratacion.setScale(2);
+                    skuJson += '"precioRenta":' + redondeadoRenta + ',';
+                    skuJson += '"precioContratacion":' + redondeadoContratacion + '';
+                    skuJson += '}';
+                    skusJsonList.add(skuJson);
                     String skuJson2 = '{';
-                    skuJson2 += '"skuTipo":"BAJO_DEMANDA",';
-                    for(QuoteLineItem item4 :productosHijos){
-                        if(item4.Product2.vlocity_cmt__SpecificationSubType__c=='Bundle'){
-                            switch on item4.Product2.Name{
-                                when '10 MB'{
-                                    skuJson2 += '"skuRenta": "IDNBDR-10-50M",';
-                                }
-                                when '20 MB'{
-                                    skuJson2 += '"skuRenta": "IDNBDR-20-50M",';
-                                }
-                                when '30 MB'{
-                                    skuJson2 += '"skuRenta": "IDNBDR-30-100M",';
-                                }
-                                when '40 MB'{
-                                    skuJson2 += '"skuRenta": "IDNBDR-40-80M",';
-                                }
-                                when '50 MB'{
-                                    skuJson2 += '"skuRenta": "IDNBDR-50-200M",';
-                                }
-                                when '60 MB'{
-                                    skuJson2 += '"skuRenta": "IDNBDR-60-100M",';
-                                }
-                                when '80 MB'{
-                                    skuJson2 += '"skuRenta": "IDNBDR-80-150M",';
-                                }
-                                when '100 MB'{
-                                    skuJson2 += '"skuRenta": "IDNBDR-100-200M",';
-                                }
-                                when '150 MB'{
-                                    skuJson2 += '"skuRenta": "IDNBDR-150-250M",';
-                                }
-                                when '200 MB'{
-                                    skuJson2 += '"skuRenta": "IDNBDR-200-500M",';
-                                }
-                                when '250 MB'{
-                                    skuJson2 += '"skuRenta": "IDNBDR-250M-500M",';
-                                }
-                                when '300 MB'{
-                                    skuJson2 += '"skuRenta": "IDNBDR-300M-500M",';
-                                }
-                                when '500 MB'{
-                                    skuJson2 += '"skuRenta": "IDNBDR-500M-1G",';
-                                }
-                            }
-                        }
-                    }
-                    skuJson2 += '"skuContratacion":"",';
-                    skuJson2 += '"precioRenta":' + 0.01 + ',';
-                    skuJson2 += '"precioContratacion":' + 0 + ',';
-                    skuJson2 += '"sitio": null,';
-                    skuJson2 += '"cantidad":' + 1;
+                    skuJson2 += '"skuTipo":"EQUIPO",';
+                    skuJson2 += '"skuRenta":"' + productoEquipoRenta.Product2.StockKeepingUnit+'",';
+                    skuJson2 += '"skuContratacion":"' + productoEquipoContratacion.Product2.dtmProductSkuContratacion__c+'",';
+                    Decimal redondearRenta2 = productoEquipoRenta.vlocity_cmt__RecurringCharge__c;
+                    Decimal redondearContratacion2 = productoEquipoContratacion.vlocity_cmt__OneTimeCharge__c;
+                    Decimal redondeadoRenta2 = redondearRenta2.setScale(2);
+                    Decimal redondeadoContratacion2 = redondearContratacion2.setScale(2);
+                    skuJson2 += '"precioRenta":' + redondeadoRenta2 + ',';
+                    skuJson2 += '"precioContratacion":' + redondeadoContratacion2 + '';
                     skuJson2 += '}';
                     skusJsonList.add(skuJson2);
+                    String skuJson3 = '{';
+                    skuJson3 += '"skuTipo":"PEXA",';
+                    skuJson3 += '"skuRenta":"' + productoPexaRenta.Product2.StockKeepingUnit+'",';
+                    skuJson3 += '"skuContratacion":"' + productoPexaContratacion.Product2.dtmProductSkuContratacion__c+'",';
+                    Decimal redondearRenta3 = productoPexaRenta.vlocity_cmt__RecurringCharge__c;
+                    Decimal redondearContratacion3 = productoPexaContratacion.vlocity_cmt__OneTimeCharge__c;
+                    Decimal redondeadoRenta3 = redondearRenta3.setScale(2);
+                    Decimal redondeadoContratacion3 = redondearContratacion3.setScale(2);
+                    skuJson3 += '"precioRenta":' + redondeadoRenta3 + ',';
+                    skuJson3 += '"precioContratacion":' + redondeadoContratacion3 + '';
+                    skuJson3 += '}';
+                    skusJsonList.add(skuJson3);
+                    if(item.dtmModalidad__c=='Bajo Demanda'){
+                        String skuJson4 = '{';
+                        skuJson4 += '"skuTipo":"BAJO_DEMANDA",';
+                        for(QuoteLineItem item4 :productosHijos){
+                            if(item4.Product2.vlocity_cmt__SpecificationSubType__c=='Bundle'){
+                                switch on item4.Product2.Name{
+                                    when '10 MB'{
+                                        skuJson4 += '"skuRenta": "IDNBDR-10-50M",';
+                                    }
+                                    when '20 MB'{
+                                        skuJson4 += '"skuRenta": "IDNBDR-20-50M",';
+                                    }
+                                    when '30 MB'{
+                                        skuJson4 += '"skuRenta": "IDNBDR-30-100M",';
+                                    }
+                                    when '40 MB'{
+                                        skuJson4 += '"skuRenta": "IDNBDR-40-80M",';
+                                    }
+                                    when '50 MB'{
+                                        skuJson4 += '"skuRenta": "IDNBDR-50-200M",';
+                                    }
+                                    when '60 MB'{
+                                        skuJson4 += '"skuRenta": "IDNBDR-60-100M",';
+                                    }
+                                    when '80 MB'{
+                                        skuJson4 += '"skuRenta": "IDNBDR-80-150M",';
+                                    }
+                                    when '100 MB'{
+                                        skuJson4 += '"skuRenta": "IDNBDR-100-200M",';
+                                    }
+                                    when '150 MB'{
+                                        skuJson4 += '"skuRenta": "IDNBDR-150-250M",';
+                                    }
+                                    when '200 MB'{
+                                        skuJson4 += '"skuRenta": "IDNBDR-200-500M",';
+                                    }
+                                    when '250 MB'{
+                                        skuJson4 += '"skuRenta": "IDNBDR-250M-500M",';
+                                    }
+                                    when '300 MB'{
+                                        skuJson4 += '"skuRenta": "IDNBDR-300M-500M",';
+                                    }
+                                    when '500 MB'{
+                                        skuJson4 += '"skuRenta": "IDNBDR-500M-1G",';
+                                    }
+                                }
+                            }
+                        }
+                        skuJson4 += '"skuContratacion":"",';
+                        skuJson4 += '"precioRenta":' + 0.01 + ',';
+                        skuJson4 += '"precioContratacion":' + 0 + '';
+                        skuJson4 += '}';
+                        skusJsonList.add(skuJson4);
+                    }
+                    productoJson += String.join(skusJsonList, ',');
+                    productoJson += ']}';
+                }else{
+                    productoJson += '"skus":[';
+                    List<String> skusJsonList = new List<String>();
+                    for (Integer j = 0; j < productosHijos.size(); j++) { 
+                        QuoteLineItem item2 = productosHijos[j];
+                        if(item2.Product2.vlocity_cmt__SpecificationSubType__c!='Bundle'){
+                            String skuJson = '{';
+                            switch on item.Product2.Name{
+                                when 'Wifi Avanzado','Wifi Corporativo en sucursales / casa'{
+                                    Map<String, Object> parsedValue = (Map<String, Object>) JSON.deserializeUntyped(item.vlocity_cmt__AttributeSelectedValues__c);
+                                    String valoresPlazo = (String) parsedValue.get('ATT_INT_12M_24M_36M)');
+                                    String[] plazos = valoresPlazo.split(' ');
+                                    Integer plazo = Integer.valueOf(plazos[0]);
+                                    skuJson += '"skuRenta":"' + item2.Product2.StockKeepingUnit + plazo+'",';
+                                    skuJson += '"skuContratacion":"' + item2.Product2.dtmProductSkuContratacion__c + plazo+'",';
+                                }
+                                when 'SD WAN Telmex'{
+                                    Map<String, Object> parsedValue = (Map<String, Object>) JSON.deserializeUntyped(item.vlocity_cmt__AttributeSelectedValues__c);
+                                    String valoresPlazo = (String) parsedValue.get('ATT_PLZ_12M_24M_36M');
+                                    String[] plazos = valoresPlazo.split(' ');
+                                    Integer plazo = Integer.valueOf(plazos[0]);
+                                    skuJson += '"skuRenta":"' + item2.Product2.StockKeepingUnit + plazo+'",';
+                                    skuJson += '"skuContratacion":"' + item2.Product2.dtmProductSkuContratacion__c + plazo +'",';
+                                }
+                                when 'Wifi Analítico'{
+                                    Map<String, Object> parsedValue = (Map<String, Object>) JSON.deserializeUntyped(item.vlocity_cmt__AttributeSelectedValues__c);
+                                    String valoresPlazo = (String) parsedValue.get('ATT_WIFIANALITICO_PLAZO');
+                                    String[] plazos = valoresPlazo.split(' ');
+                                    Integer plazo = Integer.valueOf(plazos[0]);
+                                    skuJson += '"skuRenta":"' + item2.Product2.StockKeepingUnit + plazo+'M'+'",';
+                                    skuJson += '"skuContratacion":"' + item2.Product2.dtmProductSkuContratacion__c + plazo+'M'+'",';
+                                }
+                                when else{
+                                    skuJson += '"skuRenta":"' + item2.Product2.StockKeepingUnit + '",';
+                                    skuJson += '"skuContratacion":"' + item2.Product2.dtmProductSkuContratacion__c + '",';
+                                }
+                            }
+                            System.debug('skuJson '+skuJson);
+                            Decimal redondearRenta = item2.vlocity_cmt__RecurringCharge__c;
+                            Decimal redondearContratacion = item2.vlocity_cmt__OneTimeCharge__c;
+                            
+                            Decimal redondeadoRenta = redondearRenta.setScale(2);
+                            Decimal redondeadoContratacion = redondearContratacion.setScale(2);
+                            
+                            skuJson += '"precioRenta":' + redondeadoRenta + ',';
+                            skuJson += '"precioContratacion":' + redondeadoContratacion + ',';
+                            if (item.Product2.Name == 'Internet Directo Negocio') {
+                                skuJson += '"sitio": null,';
+                            }else{
+                                String[] sitioss2 = item2.dtmNombresitio__c.split(' ');
+                                String sitio2 = sitioss2[0];
+                                skuJson += '"sitio": ' + sitio2 + ',';
+                            }
+                            skuJson += '"cantidad":' + Integer.ValueOf(item2.Quantity);
+                            skuJson += '}';
+                            
+                            skusJsonList.add(skuJson);
+                        }
+                        
+                        
+                        
+                    }
+                    productoJson += String.join(skusJsonList, ',');
+                    productoJson += ']}';
                 }
-                productoJson += String.join(skusJsonList, ',');
-                productoJson += ']}';
                 productosJsonList.add(productoJson);
             }
         }

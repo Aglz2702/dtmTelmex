@@ -21,14 +21,7 @@ global with sharing  class dtmFormatoPrecios  implements Callable{
                 output.put('result',result );
                 System.debug('result'+result);
             }
-            when 'remplazarSaltoLinea'{
-
-                List<Object> arguments = (List<Object>)inputs.get('arguments');
-                String value = (String)arguments[0];
-                result =remplazarSaltoLinea(value);
-                output.put('result',result );
-
-            }
+            
             when 'llamarCalcularPrecios'{
                 List<Object> arguments = (List<Object>)inputs.get('arguments');
                 System.debug('Argumentos ..' + arguments);
@@ -39,26 +32,6 @@ global with sharing  class dtmFormatoPrecios  implements Callable{
                 
             }
          }
-
-
-    /**  if (methodName == 'formatearNumero'){
-            
-            List<Object> arguments = (List<Object>)inputs.get('arguments');
-            String precio = (String)arguments[0];
-            ///Decimal precios = (Decimal)arguments;
-            System.debug('valor de entrada: '+precio);
-           	result =formatearNumero(precio);
-            output.put('result',result );
-            System.debug('result'+result);
-
-        }else if(methodName =='remplazarSaltoLinea'){
-            
-            List<Object> arguments = (List<Object>)inputs.get('arguments');
-            String value = (String)arguments[0];
-            result =remplazarSaltoLinea(value);
-            output.put('result',result );
-
-        } */
         return true;
     }
 
@@ -86,17 +59,45 @@ global with sharing  class dtmFormatoPrecios  implements Callable{
         }
     }
     
-     public static String remplazarSaltoLinea(String value) {
-         if (value == null) {
-            return '';
+      public static  void calculateTotalPrice(Id quoteId) {
+       Decimal totalPrice = 0;
+       // Mapas para almacenar los productos hijos, nietos y bisnietos
+       Map<Id, List<QuoteLineItem>> childItemsMap = new Map<Id, List<QuoteLineItem>>(); //child child
+       Map<Id, List<QuoteLineItem>> grandchildItemsMap = new Map<Id, List<QuoteLineItem>>();//child rack
+       Map<Id, List<QuoteLineItem>> greatGrandchildItemsMap = new Map<Id, List<QuoteLineItem>>();//rack
+       List<String> quoteLineItemParentId = new List<String>();
+          List<String> quoteLineItemChildId = new List<String>();
+       // Obtener todos los QuoteLineItems relacionados en una sola consulta
+       List<QuoteLineItem> partidas =[SELECT Id,Description,Quantity,vlocity_cmt__AssetReferenceId__c,vlocity_cmt__ParentItemId__c,vlocity_cmt__BaseRecurringCharge__c 
+                                                   FROM QuoteLineItem WHERE QuoteId =:quoteId  and Description LIKE 'Rack%' 
+                                             		];
+        System.debug('Productos Padre: '+partidas);
+        for(QuoteLineItem p:partidas){
+            quoteLineItemParentId.add(p.vlocity_cmt__AssetReferenceId__c);
+            greatGrandchildItemsMap.put(p.vlocity_cmt__AssetReferenceId__c,new List<QuoteLineItem>());
+             
         }
-         else{
-            String textoFormateado = value.replace('\r\n', '<br>');
-        	return textoFormateado;
-         }   
-    }
-
-/**    public static String calcularPrecios(String value){
+        System.debug('racks ids asset: '+quoteLineItemParentId);
+        List<QuoteLineItem> childOfRacks=[SELECT Id,Description,Quantity,vlocity_cmt__AssetReferenceId__c,vlocity_cmt__ParentItemId__c,vlocity_cmt__BaseRecurringCharge__c 
+                                                   FROM QuoteLineItem WHERE QuoteId=:quoteId AND vlocity_cmt__ParentItemId__c IN:quoteLineItemParentId ];
+          System.debug('ids partidas hijos'+childOfRacks);
+          System.debug('size primer capa hijos de rack: '+childOfRacks.size());
+          Id parentAssetId='';
+          for(QuoteLineItem p:childOfRacks){
+              parentAssetId=p.vlocity_cmt__ParentItemId__c;
+              quoteLineItemChildId.add(p.vlocity_cmt__AssetReferenceId__c);
+              if(greatGrandchildItemsMap.containsKey(parentAssetId)){
+                  grandchildItemsMap.get(parentAssetId).add(p);
+                  
+              }
+        }
+        System.debug('racks ids asset: '+quoteLineItemChildId);
+          List<QuoteLineItem> childOfChildRacks=[SELECT Id,Description,Quantity,vlocity_cmt__AssetReferenceId__c,vlocity_cmt__ParentItemId__c,vlocity_cmt__BaseRecurringCharge__c 
+                                                   FROM QuoteLineItem WHERE QuoteId=:quoteId AND vlocity_cmt__ParentItemId__c IN:quoteLineItemChildId ];   
+          System.debug('ids partidas hijos de hijosRack'+childOfChildRacks);
+          System.debug('size segunda capa hijos de hijos rack: '+childOfChildRacks.size());
         
-    } */
+          
+    }
+      
 }

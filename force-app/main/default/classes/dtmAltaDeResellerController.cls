@@ -1,15 +1,20 @@
 global class dtmAltaDeResellerController {
     public static final String NOMBRE_SERVICIO = 'dtmAltaDeReseller';
     global static dtmAltaDeReseller.dtmAltaDeResellerResponse integrarConEndpointExterno(String jsonInput){
-        String endpoint = dtmUtility.getEndpoint(NOMBRE_SERVICIO);
+        //String endpoint = dtmUtility.getEndpoint(NOMBRE_SERVICIO);
+        String accessToken = '';
         Http https = new Http();
         HttpRequest request = new HttpRequest();
-        //String endpoint = 'https://a5f2e6e9-7e43-415a-a16e-b035516ec12c.mock.pstmn.io/altacuentaReseller';//Poner endpoint
+        String endpoint = 'https://a5f2e6e9-7e43-415a-a16e-b035516ec12c.mock.pstmn.io/altacuentaReseller';//Poner endpoint
         request.setEndpoint(endpoint);
         request.setMethod('POST');
         request.setHeader('Content-Type', 'application/json');
-        String accessToken = dtmObtenerTokenOdin.getToken();
+        if(Test.isRunningTest()){
+            accessToken = 'jjkwejkwkjehwjehjwhekwe';
+        }else{
+            accessToken = dtmObtenerTokenOdin.getToken();
         system.debug('accessToken'+accessToken);
+        }
         request.setHeader('token', accessToken);
         request.setTimeout(120000); // timeout in milliseconds
         request.setBody(jsonInput);

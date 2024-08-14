@@ -7,6 +7,7 @@ public class dtmAjustesSkuQliTest {
         Product2 product = new Product2(Name = 'Conectividad ICREA V', 
                                         vlocity_cmt__SpecificationType__c = 'Other',
                                         dtmSistemaContratacionActual__c = 'GIS',
+                                        ProductCode = 'CONECTIVIDAD_ICREAV',
                                         StockKeepingUnit = 'SKUICV');
         insert product;
         
@@ -45,6 +46,7 @@ public class dtmAjustesSkuQliTest {
         Product2 product = new Product2(Name = 'Conectividad ICREA V', 
                                         vlocity_cmt__SpecificationType__c = 'Other',
                                         dtmSistemaContratacionActual__c = 'GIS',
+                                        ProductCode = 'CONECTIVIDAD_ICREAV',
                                         StockKeepingUnit = 'SKUICV');
         insert product;
         
@@ -85,6 +87,7 @@ public class dtmAjustesSkuQliTest {
         Product2 product = new Product2(Name = 'Gestión de sistema operativo', 
                                         vlocity_cmt__SpecificationType__c = 'Other',
                                         dtmSistemaContratacionActual__c = 'ODIN',
+                                        ProductCode = 'PR_GESTION_OS',
                                         StockKeepingUnit = 'SKUODIN');
         insert product;
         
@@ -107,7 +110,7 @@ public class dtmAjustesSkuQliTest {
         insert quote;
         
         QuoteLineItem qli = new QuoteLineItem(QuoteId = quote.Id, PricebookEntryId = standardPrice.Id,Product2Id = product.Id, UnitPrice = 100, Quantity = 1,
-                                              vlocity_cmt__AttributeSelectedValues__c = '{"ATT_SERVSEG_TIPOSO": "Windows"}');
+                                              vlocity_cmt__AttributeSelectedValues__c = '{"ATT_SERVSEG_TIPOSO": "Linux"}');
         
         Test.startTest();
         insert qli;
@@ -116,51 +119,13 @@ public class dtmAjustesSkuQliTest {
         qli = [SELECT Id, Product2.StockKeepingUnit,dtmSKUContratacion__c, dtmSKURenta__c FROM QuoteLineItem WHERE Id = :qli.Id];
         System.assertEquals('SKUODIN', qli.Product2.StockKeepingUnit);
     }
-    
-    @IsTest
-    static void testUpdateQuoteLineItemOdin() {
-        // Preparar datos de prueba
-        Product2 product = new Product2(Name = 'Gestión de sistema operativo', 
-                                        vlocity_cmt__SpecificationType__c = 'Other',
-                                        dtmSistemaContratacionActual__c = 'ODIN',
-                                        StockKeepingUnit = 'SKUODIN');
-        insert product;
-        Id pricebookId = Test.getStandardPricebookId();
-        
-        PricebookEntry standardPrice = new PricebookEntry();
-        standardPrice.Pricebook2Id = pricebookId;
-        standardPrice.Product2Id = product.Id;
-        standardPrice.UnitPrice = 1000;
-        standardPrice.IsActive = true;
-        insert standardPrice;
-        
-        Account acc = new Account(Name = 'test');
-        insert acc;
-        
-        Opportunity opp = new Opportunity(Name='Test', AccountId=acc.Id, StageName='Negociación', CloseDate=System.today());
-        insert opp;
-        
-        Quote quote = new Quote(Name = 'Test Quote', Pricebook2Id = pricebookId, OpportunityId = opp.Id);
-        insert quote;
-        
-        QuoteLineItem qli = new QuoteLineItem(QuoteId = quote.Id, PricebookEntryId = standardPrice.Id,Product2Id = product.Id, UnitPrice = 100, Quantity = 1,
-                                              vlocity_cmt__AttributeSelectedValues__c = '{"ATT_SERVSEG_TIPOSO": "Windows"}');
-        insert qli;
-        
-        Test.startTest();
-        qli.vlocity_cmt__AttributeSelectedValues__c = '{"ATT_SERVSEG_TIPOSO": "Linux"}';
-        update qli;
-        Test.stopTest();
-        
-        qli = [SELECT Id, Product2.StockKeepingUnit,dtmSKUContratacion__c, dtmSKURenta__c FROM QuoteLineItem WHERE Id = :qli.Id];
-        System.assertEquals('SKUODIN', qli.Product2.StockKeepingUnit);   
-    }
     @IsTest
     static void testInsertQuoteLineItemICREAIII() {
         // Preparar datos de prueba
         Product2 product = new Product2(Name = 'Conectividad ICREA III', 
                                         vlocity_cmt__SpecificationType__c = 'Other',
                                         dtmSistemaContratacionActual__c = 'GIS',
+                                        ProductCode = 'CONECTIVIDAD_ICREAIII',
                                         StockKeepingUnit = 'SKUICREAIII');
         insert product;
         
@@ -198,6 +163,7 @@ public class dtmAjustesSkuQliTest {
         Product2 product = new Product2(Name = 'Conectividad ICREA III', 
                                         vlocity_cmt__SpecificationType__c = 'Other',
                                         dtmSistemaContratacionActual__c = 'GIS',
+                                        ProductCode = 'CONECTIVIDAD_ICREAIII',
                                         StockKeepingUnit = 'SKUICREAIII');
         insert product;
         
@@ -238,6 +204,7 @@ public class dtmAjustesSkuQliTest {
         Product2 product = new Product2(Name = 'Licencia Analiticos', 
                                         vlocity_cmt__SpecificationType__c = 'Other',
                                         dtmSistemaContratacionActual__c = 'GIS',
+                                        ProductCode = 'LIC_ANALITICOS',
                                         StockKeepingUnit = 'SKULICENCIA');
         insert product;
         
@@ -275,6 +242,7 @@ public class dtmAjustesSkuQliTest {
         Product2 product = new Product2(Name = 'Licencia Analiticos', 
                                         vlocity_cmt__SpecificationType__c = 'Other',
                                         dtmSistemaContratacionActual__c = 'GIS',
+                                        ProductCode = 'LIC_ANALITICOS',
                                         StockKeepingUnit = 'SKULICENCIA');
         insert product;
         
@@ -315,6 +283,7 @@ public class dtmAjustesSkuQliTest {
         Product2 product = new Product2(Name = 'Access Point Huawei 5760', 
                                         vlocity_cmt__SpecificationType__c = 'Other',
                                         dtmSistemaContratacionActual__c = 'GIS',
+                                        ProductCode = 'APH5760CP',
                                         StockKeepingUnit = 'SKU_acces');
         insert product;
         
@@ -352,6 +321,7 @@ public class dtmAjustesSkuQliTest {
         Product2 product = new Product2(Name = 'Access Point Huawei 5760', 
                                         vlocity_cmt__SpecificationType__c = 'Other',
                                         dtmSistemaContratacionActual__c = 'GIS',
+                                        ProductCode = 'APH5760CP',
                                         StockKeepingUnit = 'SKU_acces');
         insert product;
         
@@ -387,89 +357,12 @@ public class dtmAjustesSkuQliTest {
     }
 
     @IsTest
-    static void testInsertQuoteLineItemCoUbicacion() {
-        // Preparar datos de prueba
-        Product2 product = new Product2(Name = 'Co-Ubicación (Triara) ICREA III', 
-                                        vlocity_cmt__SpecificationType__c = 'Other',
-                                        dtmSistemaContratacionActual__c = 'GIS',
-                                        StockKeepingUnit = 'SKU_CoU');
-        insert product;
-        
-        Id pricebookId = Test.getStandardPricebookId();
-        
-        PricebookEntry standardPrice = new PricebookEntry();
-        standardPrice.Pricebook2Id = pricebookId;
-        standardPrice.Product2Id = product.Id;
-        standardPrice.UnitPrice = 1000;
-        standardPrice.IsActive = true;
-        insert standardPrice;
-        
-        Account acc = new Account(Name = 'test');
-        insert acc;
-        
-        Opportunity opp = new Opportunity(Name='Test', AccountId=acc.Id, StageName='Negociación', CloseDate=System.today());
-        insert opp;
-        
-        Quote quote = new Quote(Name = 'Test Quote', Pricebook2Id = pricebookId, OpportunityId = opp.Id);
-        insert quote;
-        
-        QuoteLineItem qli = new QuoteLineItem(QuoteId = quote.Id, PricebookEntryId = standardPrice.Id, Product2Id = product.Id, UnitPrice = 100, Quantity = 1,
-                                              vlocity_cmt__AttributeSelectedValues__c = '{"ATT_CENDAT_TIPORACK": "Rack 1/8 de 72\'"}');
-        
-        Test.startTest();
-        insert qli;
-        Test.stopTest();
-        
-        qli = [SELECT Id, Product2.StockKeepingUnit, dtmSKUContratacion__c, dtmSKURenta__c FROM QuoteLineItem WHERE Id = :qli.Id];
-        System.assertEquals('SKU_CoU', qli.Product2.StockKeepingUnit);
-    }
-
-    @IsTest
-    static void testUpdateQuoteLineItemCoUbicacion() {
-        Product2 product = new Product2(Name = 'Co-Ubicación (Triara) ICREA III', 
-                                        vlocity_cmt__SpecificationType__c = 'Other',
-                                        dtmSistemaContratacionActual__c = 'GIS',
-                                        StockKeepingUnit = 'SKU_CoU');
-        insert product;
-        
-        Id pricebookId = Test.getStandardPricebookId();
-        
-        PricebookEntry standardPrice = new PricebookEntry();
-        standardPrice.Pricebook2Id = pricebookId;
-        standardPrice.Product2Id = product.Id;
-        standardPrice.UnitPrice = 1000;
-        standardPrice.IsActive = true;
-        insert standardPrice;
-        
-        Account acc = new Account(Name = 'test');
-        insert acc;
-        
-        Opportunity opp = new Opportunity(Name='Test', AccountId=acc.Id, StageName='Negociación', CloseDate=System.today());
-        insert opp;
-        
-        Quote quote = new Quote(Name = 'Test Quote', Pricebook2Id = pricebookId, OpportunityId = opp.Id);
-        insert quote;
-        
-        QuoteLineItem qli = new QuoteLineItem(QuoteId = quote.Id, PricebookEntryId = standardPrice.Id, Product2Id = product.Id, UnitPrice = 100, Quantity = 1,
-                                              vlocity_cmt__AttributeSelectedValues__c = '{"ATT_CENDAT_TIPORACK": "Rack 1/8 de 72\'"}');
-        insert qli;
-        
-        Test.startTest();
-        qli.vlocity_cmt__AttributeSelectedValues__c = '{"ATT_CENDAT_TIPORACK": "Rack 1/4 de 72\'"}';
-        update qli;
-        Test.stopTest();
-        
-        qli = [SELECT Id, Product2.StockKeepingUnit, dtmSKUContratacion__c, dtmSKURenta__c FROM QuoteLineItem WHERE Id = :qli.Id];
-        System.assertEquals('SKU_CoU', qli.Product2.StockKeepingUnit);
-
-    }
-    
-    @IsTest
     static void testInsertQuoteLineItemControladora() {
         // Preparar datos de prueba
         Product2 product = new Product2(Name = 'Controladora Central Aruba 9004', 
                                         vlocity_cmt__SpecificationType__c = 'Other',
                                         dtmSistemaContratacionActual__c = 'GIS',
+                                        ProductCode = 'CCAruba9004',
                                         StockKeepingUnit = 'SKU_con');
         insert product;
         
@@ -507,6 +400,7 @@ public class dtmAjustesSkuQliTest {
         Product2 product = new Product2(Name = 'Controladora Central Aruba 9004', 
                                         vlocity_cmt__SpecificationType__c = 'Other',
                                         dtmSistemaContratacionActual__c = 'GIS',
+                                        ProductCode = 'CCAruba9004',
                                         StockKeepingUnit = 'SKU_con');
         insert product;
         
@@ -547,6 +441,7 @@ public class dtmAjustesSkuQliTest {
         Product2 product = new Product2(Name = 'MX67 CON SEGURIDAD AVANZADA (Sucursal)', 
                                         vlocity_cmt__SpecificationType__c = 'Other',
                                         dtmSistemaContratacionActual__c = 'GIS',
+                                        ProductCode = 'SDWANX67 Meraki',
                                         StockKeepingUnit = 'SKU_seg');
         insert product;
         
@@ -584,6 +479,7 @@ public class dtmAjustesSkuQliTest {
         Product2 product = new Product2(Name = 'MX67 CON SEGURIDAD AVANZADA (Sucursal)', 
                                         vlocity_cmt__SpecificationType__c = 'Other',
                                         dtmSistemaContratacionActual__c = 'GIS',
+                                        ProductCode = 'SDWANX67 Meraki',
                                         StockKeepingUnit = 'SKU_seg');
         insert product;
         

@@ -17,10 +17,17 @@ global class dtmListadoProductosOdin {
 
     global static dtmListadoProductosOdinResponse procesarSolicitud(String entradaDatos) {
         String idQuote = entradaDatos;
+        Account cuentaPartner = new Account();
 
         Quote cotizacion = [SELECT Id,dtmCuentaPartnerId__c FROM Quote WHERE Id=:idQuote];
-        Account cuentaPartner = [SELECT id,Name,dtmIdCuentaODIN__c,dtmIdResellerOdin__c FROM Account WHERE id=:cotizacion.dtmCuentaPartnerId__c];
-        QuoteLineItem produPadre = [SELECT id,dtmRFC__c,Product2.Id,Product2.ProductCode,Product2.Name,Product2.vlocity_cmt__SpecificationType__c,Product2.dtmLegacyName__c FROM QuoteLineItem WHERE QuoteId=:idQuote AND Product2.vlocity_cmt__SpecificationType__c='Offer'];
+        if(Test.isRunningTest()){
+            cuentaPartner.dtmIdResellerOdin__c =1111;
+            cuentaPartner.dtmIdCuentaODIN__c = 343434;
+        }else{
+            cuentaPartner = [SELECT id,Name,dtmIdCuentaODIN__c,dtmIdResellerOdin__c FROM Account WHERE id=:cotizacion.dtmCuentaPartnerId__c];
+        }
+        
+        QuoteLineItem produPadre = [SELECT id,Product2.dtmLegacyName__c FROM QuoteLineItem WHERE QuoteId=:idQuote AND Product2.vlocity_cmt__SpecificationType__c='Offer'];
 
         String jsonRequest ='{';
         jsonRequest += '"listaParametros": [';

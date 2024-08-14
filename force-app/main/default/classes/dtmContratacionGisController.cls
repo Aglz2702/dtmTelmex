@@ -1,11 +1,11 @@
 global class dtmContratacionGisController {
     public static final String NOMBRE_SERVICIO = 'dtmContratacionGis';
     global static dtmContratacionGis.dtmContratacionGisResponse integrarConEndpointExterno(String jsonInput) {
-        //String endpoint = dtmUtility.getEndpoint(NOMBRE_SERVICIO);
+        String endpoint = dtmUtility.getEndpoint(NOMBRE_SERVICIO);
         Http https = new Http();
         HttpRequest request = new HttpRequest();
         String accessToken = dtmObtenerTokenGis.getToken();
-        String endpoint = 'https://384a95d0-cd4e-4ea3-94d9-96480b4ba46f.mock.pstmn.io/ContratacionGis';
+        //String endpoint = 'https://384a95d0-cd4e-4ea3-94d9-96480b4ba46f.mock.pstmn.io/ContratacionGis';
         request.setEndpoint(endpoint);
         request.setMethod('POST');
         request.setHeader('Content-Type', 'application/json');
