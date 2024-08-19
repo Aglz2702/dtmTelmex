@@ -149,9 +149,12 @@ trigger dtmAjustesSkuQli on QuoteLineItem (after insert, after update) {
                     when 'NOI ASISTENTE'{
                         skuRentaNuevo = item.Product2.dtmProductSkuContratacion__c;
                     }
-                    when else {
+                    when 'Premium','SERVSEG-PLATA','CO-SERVSEG-ORO','CO-SERVSEG-PLATINO','TR036'{
                         skuContracionNuevo = item.Product2.dtmProductSkuContratacion__c;
                         skuRentaNuevo = item.Product2.StockKeepingUnit;
+                    }
+                    when else {
+                        skuRentaNuevo = item.Product2.dtmProductSkuContratacion__c;
                     }
                 }
             }

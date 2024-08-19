@@ -15,6 +15,7 @@ global class dtmListadoProductosOdinController {
             accessToken = dtmObtenerTokenOdin.getToken();
         system.debug('accessToken'+accessToken);
         }
+        request.setHeader('token', accessToken);
         request.setTimeout(120000);
         request.setBody(jsonInput);
         HttpResponse response = https.send(request);

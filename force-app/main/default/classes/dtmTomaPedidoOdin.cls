@@ -52,6 +52,7 @@ global class dtmTomaPedidoOdin {
         }else{
             cuentaPartner = [SELECT id,Name,dtmIdCuentaODIN__c,dtmIdResellerOdin__c FROM Account WHERE id=:cotizacion.dtmCuentaPartnerId__c];
         }
+        System.debug('cuentaPartner: '+cuentaPartner);
         QuoteLineItem produPadre = [SELECT id,dtmRFC__c,dtmCorreo__c,Product2.Id,Product2.ProductCode,Product2.Name,Product2.vlocity_cmt__SpecificationType__c,Product2.dtmLegacyName__c,vlocity_cmt__AttributeSelectedValues__c FROM QuoteLineItem WHERE QuoteId=:idQuote AND Product2.vlocity_cmt__SpecificationType__c='Offer'];
         System.debug('produPadre '+produPadre);
         List<QuoteLineItem> productosHijos = [SELECT id,Product2.dtmLegacyName__c,Quantity,Product2.ProductCode, Product2.Name,vlocity_cmt__AttributeSelectedValues__c FROM QuoteLineItem WHERE QuoteId=:idQuote AND Product2.vlocity_cmt__SpecificationType__c='Product' AND Product2.vlocity_cmt__SpecificationSubType__c='Simple'];
@@ -63,6 +64,7 @@ global class dtmTomaPedidoOdin {
         jsonRequest +='"folioGoTelmex":"'+cotizacion.Id+'",';
         jsonRequest +='"codigoPromocion":null,';//Checar con marco
         jsonRequest +='"contratacionCloud":[';
+        system.debug('jsonRequest '+jsonRequest);
         jsonRequest +='{';
         jsonRequest +='"cveProducto":"'+produPadre.Product2.dtmLegacyName__c+'",';
         switch on produPadre.Product2.Name{
@@ -73,8 +75,10 @@ global class dtmTomaPedidoOdin {
                 jsonRequest +='"cvePlan":"'+productosHijos[0].Product2.dtmLegacyName__c+'",';
             }
             when 'Correo Negocio'{
-                 produAgrupador = [SELECT id,Product2.ProductCode, Product2.Name,Product2.dtmLegacyName__c FROM QuoteLineItem WHERE QuoteId=:idQuote AND Product2.vlocity_cmt__SpecificationType__c='Product' AND Product2.vlocity_cmt__SpecificationSubType__c='Bundle'];
-                jsonRequest +='"cvePlan":"'+produAgrupador.Product2.dtmLegacyName__c+'",';
+                system.debug('jsonRequest '+jsonRequest);
+                 produAgrupador = [SELECT id,Product2.ProductCode, Product2.Name,Product2.dtmLegacyName__c FROM QuoteLineItem WHERE QuoteId=:idQuote AND Product2.dtmLegacyName__c='AGRUPADOR'];
+                jsonRequest +='"cvePlan":"'+produAgrupador.Product2.ProductCode+'",';
+                system.debug('jsonRequest '+jsonRequest);
             }
         }
         system.debug('jsonRequest '+jsonRequest);
@@ -291,6 +295,7 @@ global class dtmTomaPedidoOdin {
             respuesta.codigoRespuesta = responses.codigoRespuesta;
             dtmTomaPedidoOdin.guardaErrores(jsonRequest, respuesta, idQuote);
             cotizacion.dtmMensajeError__c = responses.mensajeRespuesta;
+            cotizacion.dtmMensajeErrorLargo__c = responses.mensajeRespuesta;
             update cotizacion;
         }
         System.debug('Se envia respuesta: '+respuesta);

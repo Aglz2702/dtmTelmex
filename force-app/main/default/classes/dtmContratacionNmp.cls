@@ -102,6 +102,7 @@ global class dtmContratacionNmp {
             respuesta.mensajeError = mensajeErr;
             dtmContratacionNmp.guardaErrores(jsonRequest, respuesta,idQuote);
             cotizacion.dtmMensajeError__c = mensajeErr;
+            cotizacion.dtmMensajeErrorLargo__c = mensajeErr;
             update cotizacion;
         }
         return respuesta;

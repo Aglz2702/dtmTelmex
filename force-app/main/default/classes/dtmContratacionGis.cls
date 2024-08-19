@@ -372,7 +372,9 @@ global class dtmContratacionGis {
             respuesta.severety = responses.severety;
             respuesta.errors = responses.errors;
             dtmContratacionGis.guardaErrores(jsonRequest, respuesta);
-            cotizacion.dtmMensajeError__c = responses.userMenssage;
+            String mensajesError = responses.userMenssage+': '+responses.errors;
+            String mensajeError = mensajesError.replaceAll('\\{[^\\}]*\\}', ''); 
+            cotizacion.dtmMensajeErrorLargo__c = mensajeError;
             update cotizacion;
         }
         System.debug('Se envia respuesta: '+respuesta);
