@@ -26,7 +26,7 @@ global class dtmContratacionGis {
         Integer direccionamiento = 1; //duro por ahora
         Integer plazoFijo36 = 36;
         
-        Quote cotizacion = [SELECT Name, dtmFolioGis__c,dtmMensajeError__c,Account.dtmRFC__c, Account.dtmCuentaMaestra__c, Account.dtmCUCE__c, Opportunity.dtmIdentificadorOpp__c, Opportunity.dtmCUPID__r.Name FROM Quote WHERE Id=:idQuote];
+        Quote cotizacion = [SELECT Name, dtmFolioGis__c,Opportunity.dtmCuentaPartner__r.dtmCUCE__c,dtmMensajeError__c,Account.dtmRFC__c, Account.dtmCuentaMaestra__c, Account.dtmCUCE__c, Opportunity.dtmIdentificadorOpp__c, Opportunity.dtmCUPID__r.Name FROM Quote WHERE Id=:idQuote];
         System.debug('Cotizacion: ' + cotizacion);
         List<QuoteLineItem> productos = [SELECT id,dtmDireccionamiento__c,dtmModalidad__c, Product2.dtmLegacyName__c, Quantity, dtmNombresitio__c, vlocity_cmt__AttributeSelectedValues__c, vlocity_cmt__RecurringCharge__c, vlocity_cmt__OneTimeCharge__c, dtmCodigoISOMoneda__c, Product2.Id, Product2.Name, Product2.vlocity_cmt__SpecificationType__c, Product2.ProductCode, Product2.dtmEmpresaPrestaServicios__c, Product2.StockKeepingUnit, Product2.dtmProductSkuContratacion__c, Product2.dtmPlataforma__c FROM QuoteLineItem WHERE QuoteId=:idQuote];
         System.debug('productos: ' + productos);
@@ -37,7 +37,9 @@ global class dtmContratacionGis {
         jsonRequest += '"idCotizacionSf":"' + cotizacion.Id + '",';
         jsonRequest += '"rfcClienteFinal":"' + cotizacion.Account.dtmRFC__c + '",';
         jsonRequest += '"oportunidad":"' + cotizacion.Opportunity.dtmIdentificadorOpp__c + '",';
-        jsonRequest += '"cuce":"' + cotizacion.Account.dtmCUCE__c + '",';
+        System.debug('jsonRequest '+jsonRequest);
+        jsonRequest += '"cuce":"' + cotizacion.Opportunity.dtmCuentaPartner__r.dtmCUCE__c + '",';
+        System.debug('jsonRequest '+jsonRequest);
         jsonRequest += '"cupId":' + Integer.valueOf(cotizacion.Opportunity.dtmCUPID__r.Name) + ',';
         jsonRequest += '"cuentaMaestra":"' + cotizacion.Account.dtmCuentaMaestra__c + '",';
         jsonRequest += '"productos": [';

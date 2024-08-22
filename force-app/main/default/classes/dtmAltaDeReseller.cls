@@ -57,12 +57,22 @@ global class dtmAltaDeReseller {
         jsonRequest +='"password":"'+pass+'",';
         jsonRequest +='"nombreEmpresa":"'+cuenta.Name+'",';
         if(contactoDatos.MiddleName!=null){
-            jsonRequest +='"nombre":"'+contactoDatos.FirstName+' '+contactoDatos.MiddleName+'",';
+            String nombre = contactoDatos.FirstName;
+        	String nombreSinAcentos = dtmAltaDeCuentaEnReseller.eliminarAcentos(nombre);
+            String nombreSecundario = contactoDatos.MiddleName;
+        	String nombreSecundarioSinAcentos = dtmAltaDeCuentaEnReseller.eliminarAcentos(nombreSecundario);
+            jsonRequest +='"nombre":"'+nombreSinAcentos+' '+nombreSecundarioSinAcentos+'",';
         }else{
-            jsonRequest +='"nombre":"'+contactoDatos.FirstName+'",';
+            String nombre = contactoDatos.FirstName;
+        	String nombreSinAcentos = dtmAltaDeCuentaEnReseller.eliminarAcentos(nombre);
+            jsonRequest +='"nombre":"'+nombreSinAcentos+'",';
         }
-        jsonRequest +='"apPaterno":"'+contactoDatos.LastName+'",';
-        jsonRequest +='"apMaterno":"'+contactoDatos.Suffix+'",';
+        String apPaterno = contactoDatos.LastName;
+        String apPaternoSinAcentos = dtmAltaDeCuentaEnReseller.eliminarAcentos(apPaterno);
+        jsonRequest +='"apPaterno":"'+apPaternoSinAcentos+'",';
+        String apMaterno = contactoDatos.Suffix;
+        String apMaternoSinAcentos = dtmAltaDeCuentaEnReseller.eliminarAcentos(apMaterno);
+        jsonRequest +='"apMaterno":"'+apMaternoSinAcentos+'",';
         jsonRequest +='"correo":"'+cuenta.dtmEmailCorporativo__c+'",';
         jsonRequest +='"telContacto":"'+cuenta.dtmTelefonoFijo__c+'"';
         jsonRequest +='}';
@@ -105,4 +115,26 @@ global class dtmAltaDeReseller {
         Insert errorNew;
         System.debug('Id de registro: '+errorNew.Id); 
     }
+    
+    public static String eliminarAcentos(String textoConAcentos) {
+       if (textoConAcentos == null) {
+           return null;
+       }
+       // Reemplazar acentos comunes
+       textoConAcentos = textoConAcentos.replaceAll('[áàäâã]', 'a');
+       textoConAcentos = textoConAcentos.replaceAll('[éèëê]', 'e');
+       textoConAcentos = textoConAcentos.replaceAll('[íìïî]', 'i');
+       textoConAcentos = textoConAcentos.replaceAll('[óòöôõ]', 'o');
+       textoConAcentos = textoConAcentos.replaceAll('[úùüû]', 'u');
+       textoConAcentos = textoConAcentos.replaceAll('ñ', 'n');
+       textoConAcentos = textoConAcentos.replaceAll('ç', 'c');
+       textoConAcentos = textoConAcentos.replaceAll('[ÁÀÄÂÃ]', 'A');
+       textoConAcentos = textoConAcentos.replaceAll('[ÉÈËÊ]', 'E');
+       textoConAcentos = textoConAcentos.replaceAll('[ÍÌÏÎ]', 'I');
+       textoConAcentos = textoConAcentos.replaceAll('[ÓÒÖÔÕ]', 'O');
+       textoConAcentos = textoConAcentos.replaceAll('[ÚÙÜÛ]', 'U');
+       textoConAcentos = textoConAcentos.replaceAll('Ñ', 'N');
+       textoConAcentos = textoConAcentos.replaceAll('Ç', 'C');
+       return textoConAcentos;
+   }
 }

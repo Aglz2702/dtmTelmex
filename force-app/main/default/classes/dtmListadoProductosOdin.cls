@@ -55,15 +55,31 @@ global class dtmListadoProductosOdin {
         dtmListadoProductosOdinResponse respuesta = new dtmListadoProductosOdinResponse();
         dtmListadoProductosOdin.dtmListadoProductosOdinResponse responses = dtmListadoProductosOdinController.integrarConEndpointExterno(jsonRequest);
         if (responses.statusCode==200) {
-            respuesta.statusCode = responses.statusCode;
             
-            if(responses.codigoRespuesta=='LSPAR-13'){
+            switch on responses.codigoRespuesta{
+                when 'LSPAR-13'{
+                    respuesta.statusCode = responses.statusCode;
+                    respuesta.codigoRespuesta = '13';
+                	respuesta.mensajeRespuesta = 'Consulta sin suscriptiones cloud .';
+                }
+                when '00'{
+                    respuesta.statusCode = responses.statusCode;
+                    respuesta.codigoRespuesta = '00';
+                	respuesta.mensajeRespuesta = 'Ya cuenta con suscripciones de este producto activas';
+                }
+                when else{
+                    respuesta.codigoRespuesta = responses.codigoRespuesta;
+                	respuesta.mensajeRespuesta = responses.mensajeRespuesta;
+                    
+                }
+            }
+            /*if(responses.codigoRespuesta=='LSPAR-13'){
                 respuesta.codigoRespuesta = '13';
                 respuesta.mensajeRespuesta = 'Consulta sin suscriptiones cloud .';
             }else{
                 respuesta.codigoRespuesta = '00';
                 respuesta.mensajeRespuesta = 'Ya cuenta con suscripciones de este producto activas';
-            }
+            }*/
         } else{
             respuesta.statusCode = responses.statusCode;
             respuesta.codigoRespuesta = responses.codigoRespuesta;

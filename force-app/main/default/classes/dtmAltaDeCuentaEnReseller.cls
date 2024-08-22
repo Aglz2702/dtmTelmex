@@ -46,13 +46,29 @@ global class dtmAltaDeCuentaEnReseller {
         jsonRequest +='"resellerId":"'+cuenta.dtmIdResellerOdin__c+'",';
         jsonRequest +='"subCtaMaestra":"'+cuenta.dtmSubCuentaMaestra__c+'",';
         jsonRequest +='"nombreEmpresa":"'+cuenta.Name+'",';
-        jsonRequest +='"nombre":"'+contactoDatos.FirstName+' '+contactoDatos.MiddleName+'",';
-        jsonRequest +='"apPaterno":"'+contactoDatos.LastName+'",';
-        jsonRequest +='"apMaterno":"'+contactoDatos.Suffix+'",';
+        if(contactoDatos.MiddleName!=null){
+            String nombre = contactoDatos.FirstName;
+        	String nombreSinAcentos = dtmAltaDeCuentaEnReseller.eliminarAcentos(nombre);
+            String nombreSecundario = contactoDatos.MiddleName;
+        	String nombreSecundarioSinAcentos = dtmAltaDeCuentaEnReseller.eliminarAcentos(nombreSecundario);
+            jsonRequest +='"nombre":"'+nombreSinAcentos+' '+nombreSecundarioSinAcentos+'",';
+        }else{
+            String nombre = contactoDatos.FirstName;
+        	String nombreSinAcentos = dtmAltaDeCuentaEnReseller.eliminarAcentos(nombre);
+            jsonRequest +='"nombre":"'+nombreSinAcentos+'",';
+        }
+        String apPaterno = contactoDatos.LastName;
+        String apPaternoSinAcentos = dtmAltaDeCuentaEnReseller.eliminarAcentos(apPaterno);
+        jsonRequest +='"apPaterno":"'+apPaternoSinAcentos+'",';
+        String apMaterno = contactoDatos.Suffix;
+        String apMaternoSinAcentos = dtmAltaDeCuentaEnReseller.eliminarAcentos(apMaterno);
+        jsonRequest +='"apMaterno":"'+apMaternoSinAcentos+'",';
         jsonRequest +='"correo":"'+cuenta.dtmEmailCorporativo__c+'",';
         jsonRequest +='"telContacto":"'+cuenta.dtmTelefonoFijo__c+'",';
         jsonRequest +='"codigoPostal":"'+cuenta.dtmDireccionFiscal__PostalCode__s+'",';
-        jsonRequest +='"direccion":"'+cuenta.dtmDireccionCompletaFiscal__c+'",';
+        String direccion = cuenta.dtmDireccionCompletaFiscal__c;
+        String direccionSinAcentos = dtmAltaDeCuentaEnReseller.eliminarAcentos(direccion);
+        jsonRequest +='"direccion":"'+direccionSinAcentos+'",';
         Switch on cuenta.dtmDireccionFiscal__StateCode__s{
             when 'ME'{
                 jsonRequest +='"cveEstado":"MX",';
@@ -70,7 +86,9 @@ global class dtmAltaDeCuentaEnReseller {
                 jsonRequest +='"cveEstado":"'+cuenta.dtmDireccionFiscal__StateCode__s+'",';
             }
         }
-        jsonRequest +='"localidad":"'+cuenta.dtmDireccionFiscal__City__s+'"';
+        String localidad = cuenta.dtmDireccionFiscal__City__s;
+        String localidadSinAcentos = dtmAltaDeCuentaEnReseller.eliminarAcentos(localidad);
+        jsonRequest +='"localidad":"'+localidadSinAcentos+'"';
         jsonRequest +='}';
     
         System.debug('El request a enviar es:'+jsonRequest);
@@ -113,5 +131,26 @@ global class dtmAltaDeCuentaEnReseller {
         Insert errorNew;
         System.debug('Id de registro: '+errorNew.Id); 
     }
+     public static String eliminarAcentos(String textoConAcentos) {
+       if (textoConAcentos == null) {
+           return null;
+       }
+       // Reemplazar acentos comunes
+       textoConAcentos = textoConAcentos.replaceAll('[áàäâã]', 'a');
+       textoConAcentos = textoConAcentos.replaceAll('[éèëê]', 'e');
+       textoConAcentos = textoConAcentos.replaceAll('[íìïî]', 'i');
+       textoConAcentos = textoConAcentos.replaceAll('[óòöôõ]', 'o');
+       textoConAcentos = textoConAcentos.replaceAll('[úùüû]', 'u');
+       textoConAcentos = textoConAcentos.replaceAll('ñ', 'n');
+       textoConAcentos = textoConAcentos.replaceAll('ç', 'c');
+       textoConAcentos = textoConAcentos.replaceAll('[ÁÀÄÂÃ]', 'A');
+       textoConAcentos = textoConAcentos.replaceAll('[ÉÈËÊ]', 'E');
+       textoConAcentos = textoConAcentos.replaceAll('[ÍÌÏÎ]', 'I');
+       textoConAcentos = textoConAcentos.replaceAll('[ÓÒÖÔÕ]', 'O');
+       textoConAcentos = textoConAcentos.replaceAll('[ÚÙÜÛ]', 'U');
+       textoConAcentos = textoConAcentos.replaceAll('Ñ', 'N');
+       textoConAcentos = textoConAcentos.replaceAll('Ç', 'C');
+       return textoConAcentos;
+   }
 
 }

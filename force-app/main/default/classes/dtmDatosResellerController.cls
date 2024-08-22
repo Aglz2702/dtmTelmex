@@ -29,19 +29,6 @@ public class dtmDatosResellerController {
 
     public PageReference enviarDatos() {
         Boolean hasError = false;
-
-        if (String.isBlank(usuario)) {
-            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'El campo Usuario es obligatorio.'));
-            hasError = true;
-        }
-        if (String.isBlank(password)) {
-            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'El campo Password es obligatorio.'));
-            hasError = true;
-        }
-
-        if (hasError) {
-            return null;
-        }
         Map<String, Object> input = new Map<String, Object>();
         Map<String, Object> output = new Map<String, Object>();
         Map<String, Object> options = new Map<String, Object>();

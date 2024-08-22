@@ -10,10 +10,11 @@ global class dtmContratacionGisController {
         request.setMethod('POST');
         request.setHeader('Content-Type', 'application/json');
         request.setHeader('Authorization', 'Bearer ' + accessToken);
+        request.setTimeout(120000);
         request.setBody(jsonInput);
         HttpResponse response = https.send(request);
         dtmContratacionGis.dtmContratacionGisResponse respuesta;
-        
+        System.debug('response::___ '+response);
         if (response.getStatusCode() == 200) {
             respuesta = (dtmContratacionGis.dtmContratacionGisResponse) JSON.deserialize(response.getBody(), dtmContratacionGis.dtmContratacionGisResponse.class);
             System.debug('Response received V2: ' + respuesta);
