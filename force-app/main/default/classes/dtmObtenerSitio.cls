@@ -6,6 +6,7 @@ global class dtmObtenerSitio {
         global Integer codigoErr {get;set;}
         global List<sitio> sitios {get;set;}
         global Integer statusCode {get;set;}
+        global String userMenssage {get;set;}
         global String nCon {get;set;}
         
         global Map<String, Object> toMap() {
@@ -48,7 +49,7 @@ global class dtmObtenerSitio {
             respuesta.sitios = responses.sitios;
         } else{
             respuesta.statusCode = responses.statusCode;
-            respuesta.mensaje = responses.mensaje;
+            respuesta.mensaje = responses.userMenssage;
             respuesta.codigoErr = responses.codigoErr;
             dtmObtenerSitio.guardaErrores(jsonRequest, respuesta);
         }

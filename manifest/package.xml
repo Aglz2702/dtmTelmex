@@ -21,12 +21,12 @@
 		<members>dtmDatosResellerController</members>
 		<members>dtmDatosResellerControllerTest</members>
 		<members>dtmFormatoPrecios</members>
+		<members>dtmFormatoPreciosTest</members>	
 		<members>dtmInterfazOrquestador</members>
 		<members>dtmInterfazOrquestadorTest</members>
 		<members>dtmListadoProductosOdin</members>
 		<members>dtmListadoProductosOdinController</members>
 		<members>dtmListadoProductosOdinTest</members>
-		<members>dtmObtenerListaPrecios</members>
 		<members>dtmObtenerSitio</members>
 		<members>dtmObtenerSitioController</members>
 		<members>dtmObtenerSitioTest</members>

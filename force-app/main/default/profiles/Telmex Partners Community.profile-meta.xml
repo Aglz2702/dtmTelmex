@@ -55172,10 +55172,10 @@
         <tab>Vlocity_Upgrade_Install_Wizard</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
-    <tabVisibilities>
+    <!--<tabVisibilities>
         <tab>dtmContactoBusiness__c</tab>
         <visibility>DefaultOn</visibility>
-    </tabVisibilities>
+    </tabVisibilities>-->
     <tabVisibilities>
         <tab>dtmProyecto__c</tab>
         <visibility>DefaultOff</visibility>

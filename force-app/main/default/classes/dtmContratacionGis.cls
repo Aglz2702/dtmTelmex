@@ -26,11 +26,11 @@ global class dtmContratacionGis {
         Integer direccionamiento = 1; //duro por ahora
         Integer plazoFijo36 = 36;
         
-        Quote cotizacion = [SELECT Name, dtmFolioGis__c,Opportunity.dtmCuentaPartner__r.dtmCUCE__c,dtmMensajeError__c,Account.dtmRFC__c, Account.dtmCuentaMaestra__c, Account.dtmCUCE__c, Opportunity.dtmIdentificadorOpp__c, Opportunity.dtmCUPID__r.Name FROM Quote WHERE Id=:idQuote];
+        Quote cotizacion = [SELECT Name, dtmFolioGis__c,Opportunity.dtmCuentaPartner__r.dtmCUCE__c,Opportunity.dtmCuentaPartner__r.dtmCuentaMaestra__c,dtmMensajeError__c,Account.dtmRFC__c, Account.dtmCuentaMaestra__c, Account.dtmCUCE__c, Opportunity.dtmIdentificadorOpp__c, Opportunity.dtmCUPID__r.Name FROM Quote WHERE Id=:idQuote];
         System.debug('Cotizacion: ' + cotizacion);
         List<QuoteLineItem> productos = [SELECT id,dtmDireccionamiento__c,dtmModalidad__c, Product2.dtmLegacyName__c, Quantity, dtmNombresitio__c, vlocity_cmt__AttributeSelectedValues__c, vlocity_cmt__RecurringCharge__c, vlocity_cmt__OneTimeCharge__c, dtmCodigoISOMoneda__c, Product2.Id, Product2.Name, Product2.vlocity_cmt__SpecificationType__c, Product2.ProductCode, Product2.dtmEmpresaPrestaServicios__c, Product2.StockKeepingUnit, Product2.dtmProductSkuContratacion__c, Product2.dtmPlataforma__c FROM QuoteLineItem WHERE QuoteId=:idQuote];
         System.debug('productos: ' + productos);
-        List<QuoteLineItem> productosHijos = [SELECT id,Product2.dtmLegacyName__c,vlocity_cmt__RecurringCharge__c, vlocity_cmt__OneTimeCharge__c, Quantity, dtmNombresitio__c, Product2.Id, Product2.vlocity_cmt__SpecificationType__c,Product2.vlocity_cmt__SpecificationSubType__c, Product2.ProductCode,Product2.Name, Product2.StockKeepingUnit, Product2.dtmProductSkuContratacion__c, Product2.dtmPlataforma__c FROM QuoteLineItem WHERE QuoteId=:idQuote AND Product2.vlocity_cmt__SpecificationType__c = 'Product'];
+        List<QuoteLineItem> productosHijos = [SELECT id,Product2.dtmLegacyName__c,vlocity_cmt__RecurringCharge__c, vlocity_cmt__OneTimeCharge__c, Quantity, dtmNombresitio__c, Product2.Id, Product2.vlocity_cmt__SpecificationType__c,Product2.vlocity_cmt__SpecificationSubType__c, Product2.ProductCode,Product2.Name, Product2.StockKeepingUnit, Product2.dtmProductSkuContratacion__c, Product2.dtmPlataforma__c,dtmSKURenta__c,dtmSKUContratacion__c FROM QuoteLineItem WHERE QuoteId=:idQuote AND Product2.vlocity_cmt__SpecificationType__c = 'Product'];
         System.debug('productosHijos: ' + productosHijos);
         
         String jsonRequest = '{';
@@ -41,7 +41,7 @@ global class dtmContratacionGis {
         jsonRequest += '"cuce":"' + cotizacion.Opportunity.dtmCuentaPartner__r.dtmCUCE__c + '",';
         System.debug('jsonRequest '+jsonRequest);
         jsonRequest += '"cupId":' + Integer.valueOf(cotizacion.Opportunity.dtmCUPID__r.Name) + ',';
-        jsonRequest += '"cuentaMaestra":"' + cotizacion.Account.dtmCuentaMaestra__c + '",';
+        jsonRequest += '"cuentaMaestra":"' + cotizacion.Opportunity.dtmCuentaPartner__r.dtmCuentaMaestra__c + '",';
         jsonRequest += '"productos": [';
         System.debug('jsonRequest '+jsonRequest);
         
@@ -64,10 +64,10 @@ global class dtmContratacionGis {
                     }
                     switch on nombreCentroDatos{
                         when 'Co-Ubicación (Triara) ICREA III'{
-                            productoJson += '"producto": "Centros de Datos de Alta Disponibilidad Nivel III",';
+                            productoJson += '"producto": "CENTROS DE DATOS DE ALTA DISPONIBILIDAD NIVEL III",';
                         }
                         when 'Co-Ubicación (Triara) ICREA V'{
-                            productoJson += '"producto": "Centros de Datos de Alta Disponibilidad Nivel V",';
+                            productoJson += '"producto": "CENTROS DE DATOS DE ALTA DISPONIBILIDAD NIVEL V",';
                         }
                     }
                 }else{
@@ -295,28 +295,20 @@ global class dtmContratacionGis {
                             String skuJson = '{';
                             switch on item.Product2.Name{
                                 when 'Wifi Avanzado','Wifi Corporativo en sucursales / casa'{
-                                    Map<String, Object> parsedValue = (Map<String, Object>) JSON.deserializeUntyped(item.vlocity_cmt__AttributeSelectedValues__c);
-                                    String valoresPlazo = (String) parsedValue.get('ATT_INT_12M_24M_36M)');
-                                    String[] plazos = valoresPlazo.split(' ');
-                                    Integer plazo = Integer.valueOf(plazos[0]);
-                                    skuJson += '"skuRenta":"' + item2.Product2.StockKeepingUnit + plazo+'",';
-                                    skuJson += '"skuContratacion":"' + item2.Product2.dtmProductSkuContratacion__c + plazo+'",';
+                                    skuJson += '"skuRenta":"' + item2.dtmSKURenta__c+'",';
+                                    skuJson += '"skuContratacion":"' + item2.dtmSKUContratacion__c+'",';
                                 }
                                 when 'SD WAN Telmex'{
-                                    Map<String, Object> parsedValue = (Map<String, Object>) JSON.deserializeUntyped(item.vlocity_cmt__AttributeSelectedValues__c);
-                                    String valoresPlazo = (String) parsedValue.get('ATT_PLZ_12M_24M_36M');
-                                    String[] plazos = valoresPlazo.split(' ');
-                                    Integer plazo = Integer.valueOf(plazos[0]);
-                                    skuJson += '"skuRenta":"' + item2.Product2.StockKeepingUnit + plazo+'",';
-                                    skuJson += '"skuContratacion":"' + item2.Product2.dtmProductSkuContratacion__c + plazo +'",';
+                                    skuJson += '"skuRenta":"' + item2.dtmSKURenta__c + '",';
+                                    skuJson += '"skuContratacion":"' + item2.dtmSKUContratacion__c + '",';
                                 }
                                 when 'Wifi Analítico'{
-                                    Map<String, Object> parsedValue = (Map<String, Object>) JSON.deserializeUntyped(item.vlocity_cmt__AttributeSelectedValues__c);
-                                    String valoresPlazo = (String) parsedValue.get('ATT_WIFIANALITICO_PLAZO');
-                                    String[] plazos = valoresPlazo.split(' ');
-                                    Integer plazo = Integer.valueOf(plazos[0]);
-                                    skuJson += '"skuRenta":"' + item2.Product2.StockKeepingUnit + plazo+'M'+'",';
-                                    skuJson += '"skuContratacion":"' + item2.Product2.dtmProductSkuContratacion__c + plazo+'M'+'",';
+                                    skuJson += '"skuRenta":"' + item2.dtmSKURenta__c + '",';
+                                    skuJson += '"skuContratacion":"' + item2.dtmSKUContratacion__c + '",';
+                                }
+                                when 'Centro de Datos de Alta Disponibilidad'{
+                                    skuJson += '"skuRenta":"' + item2.dtmSKURenta__c + '",';
+                                    skuJson += '"skuContratacion":"' + item2.dtmSKUContratacion__c + '",';
                                 }
                                 when else{
                                     skuJson += '"skuRenta":"' + item2.Product2.StockKeepingUnit + '",';

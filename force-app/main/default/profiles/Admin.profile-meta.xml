@@ -58240,11 +58240,6 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
-        <recordType>PersonAccount.PersonAccount</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>false</default>
         <recordType>Product2.vlocity_cmt__Class</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>

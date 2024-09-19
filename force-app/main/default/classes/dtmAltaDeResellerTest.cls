@@ -12,8 +12,9 @@ public class dtmAltaDeResellerTest  {
         
         Contact myContact = new Contact();
         myContact.AccountId=myAccountTest.Id;
-        myContact.FirstName = 'Test';
-        myContact.LastName = 'Test';
+        myContact.FirstName = 'á';
+        myContact.MiddleName = 'é';
+        myContact.LastName = 'ñ';
         myContact.Suffix= 'Test';
         myContact.Email = 'test@test.com';
         myContact.HomePhone = '2323232323';
@@ -95,6 +96,14 @@ public class dtmAltaDeResellerTest  {
             response.setStatusCode(200);
             return response;
         }
+    }
+    @isTest
+    static void testEliminarAcentos() {
+        // Prueba con una cadena que contiene acentos
+        String textoConAcentos = 'áéíóúñç ÁÉÍÓÚÑÇ àèìòù äëïöü âêîôû ãõ';
+        String textoEsperado = 'aeiounc AEIOUNC aeiou aeiou aeiou ao';
+        String resultado = dtmAltaDeReseller.eliminarAcentos(textoConAcentos);
+        System.assertEquals(textoEsperado, resultado, 'La función no eliminó los acentos correctamente.');
     }
     
     

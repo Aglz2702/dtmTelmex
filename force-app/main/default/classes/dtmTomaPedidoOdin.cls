@@ -295,7 +295,7 @@ global class dtmTomaPedidoOdin {
             respuesta.codigoRespuesta = responses.codigoRespuesta;
             dtmTomaPedidoOdin.guardaErrores(jsonRequest, respuesta, idQuote);
             cotizacion.dtmMensajeError__c = responses.mensajeRespuesta;
-            cotizacion.dtmMensajeErrorLargo__c = responses.mensajeRespuesta;
+            cotizacion.dtmMensajeErrorLargo__c = responses.errores+', '+responses.mensajeRespuesta;
             update cotizacion;
         }
         System.debug('Se envia respuesta: '+respuesta);
